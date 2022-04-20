@@ -21,8 +21,19 @@
             },
         ]
         // et bien retourner le tableau photographers seulement une fois
-        return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
+        // return ({
+        //     photographers: [...photographers, ...photographers, ...photographers]})
+            const myRequest = new Request('./data/photographers.json');
+
+            fetch(myRequest)
+            .then(function(response) {
+            console.log(response)
+            return response.json();
+            })
+            .then(function(datas) {
+                console.log(datas)
+                displayData(datas.photographers)
+            });
     }
 
     async function displayData(photographers) {
@@ -37,8 +48,8 @@
 
     async function init() {
         // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
+         getPhotographers();
+        // displayData(photographers);
     };
     
     init();
