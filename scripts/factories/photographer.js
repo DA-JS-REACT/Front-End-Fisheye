@@ -1,12 +1,12 @@
 function photographerFactory(data) {
 	const {id, name, portrait, city, country,tagline,price } = data;
 
-	const picture = `assets/photographers/${portrait}`;
+	const picture = `./public/assets/photographers/${portrait}`;
 
 	function getUserCardDOM() {
 		const article = document.createElement( 'article' );
 		const link = document.createElement( 'a');
-		link.setAttribute( 'href', 'photographer.html?id='+ id)
+		link.setAttribute( 'href', 'photographer.html?id='+ id);
 		const img = document.createElement( 'img' );
 		img.setAttribute('src', picture);
 		const h2 = document.createElement( 'h2' );
