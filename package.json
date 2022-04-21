@@ -1,0 +1,24 @@
+{
+  "name": "front-end-fisheye",
+  "version": "1.0.0",
+  "description": "site listant des photographes et d'exposer leurs travaux",
+  "main": "index.js",
+  "scripts": {
+    "sass":"sass --watch ./sass/main.scss:./public/css/style.css --style compressed",
+    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DA-JS-REACT/Front-End-Fisheye.git"
+  },
+  "author": "fred",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DA-JS-REACT/Front-End-Fisheye/issues"
+  },
+  "homepage": "https://github.com/DA-JS-REACT/Front-End-Fisheye#readme",
+  "devDependencies": {
+    "eslint": "^8.13.0"
+  }
+}
