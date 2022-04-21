@@ -1,32 +1,45 @@
-function photographerFactory(data) {
-	const {id, name, portrait, city, country,tagline,price } = data;
+class PhotographerFactory {
 
-	const picture = `./public/assets/photographers/${portrait}`;
+    constructor(id, name, portrait, city, country,tagline,price) {
 
-	function getUserCardDOM() {
-		const article = document.createElement( 'article' );
-		const link = document.createElement( 'a');
-		link.setAttribute( 'href', 'photographer.html?id='+ id);
-		const img = document.createElement( 'img' );
-		img.setAttribute('src', picture);
-		const h2 = document.createElement( 'h2' );
-		h2.textContent = name;
-		link.appendChild(img);
-		link.appendChild(h2);
+        this.id = id;
+        this.name = name;
+        this.portrait = portrait;
+        this.country = country;
+        this.tagline = tagline;
+        this.price = price;
+        this.city = city;
 
-		const  location = document.createElement( 'p');
-		location.textContent = city +',' +' ' + country;
-		const job = document.createElement( 'p');
-		job.textContent = tagline;
-		const buy = document.createElement('span');
-		buy.textContent = price + '€/jour';
-		article.appendChild(link);
-		article.appendChild(location);
-		article.appendChild(job);
-		article.appendChild(buy);
+    }
 
+    getUserCardDOM() {
+        const picture = `./public/assets/photographers/${this.portrait}`;
 
-		return (article);
-	}
-	return { picture, getUserCardDOM };
+        const article = document.createElement( 'article' );
+        const link = document.createElement( 'a');
+        link.setAttribute( 'href', 'photographer.html?id='+ this.id);
+        const img = document.createElement( 'img' );
+        img.setAttribute('src', picture);
+        const h2 = document.createElement( 'h2' );
+        h2.textContent = this.name;
+        link.appendChild(img);
+
+        const  location = document.createElement( 'p');
+        location.textContent = this.city +',' +' ' + this.country;
+        const job = document.createElement( 'p');
+        job.textContent = this.tagline;
+        const buy = document.createElement('span');
+        buy.textContent = this.price + '€/jour';
+        article.appendChild(link);
+        article.appendChild(location);
+        article.appendChild(job);
+        article.appendChild(buy);
+
+        return (article);
+    }
+
 }
+
+export {PhotographerFactory};
+
+
