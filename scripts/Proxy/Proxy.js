@@ -16,13 +16,10 @@ class Proxy {
             //console.log('loop',photographersCashed.id);
             const cashedResults = this.cache.filter(cacheId => cacheId === photographersCashed.id);
             console.log('cashedResults',cashedResults);
-            // if(cashedResults){
-            //     console.log('yes', this.cache);
-            //     return cashedResults;
-            // } else {
-            //     console.log('server',photographers);
-            //     return photographers;
-            //}
+            if(cashedResults){
+                console.log('yes', this.cache);
+                return cashedResults;
+            }
             this.cache.push(photographers);
             //console.log('server',photographers);
             return photographers;
