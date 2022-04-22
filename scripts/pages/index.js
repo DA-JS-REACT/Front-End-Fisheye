@@ -1,12 +1,14 @@
 import { Api } from '../api/Api.js';
 import { PhotographerFactory } from '../factories/Photographer.js' ;
+import { Proxy } from '../Proxy/Proxy.js' ;
 
 class Home  {
 
     constructor() {
         const newLocal = '../data/photographers.json';
         this.datas = new Api(newLocal);
-        this.photographersSection = document.querySelector('.photographer_section');
+        this.photographersSection = document.querySelector('.photographer-section');
+        this.proxy = new Proxy();
     }
 
     /**
@@ -23,8 +25,8 @@ class Home  {
                 photographer.portrait,
                 photographer.city,
                 photographer.country,
+                photographer.tagline,
                 photographer.price,
-                photographer.tagline
             );
             const userCardDOM = photographerModel.getUserCardDOM();
             this.photographersSection.appendChild(userCardDOM);
@@ -32,11 +34,11 @@ class Home  {
     }
     async  init() {
         //Récupère les datas des photographes
-        // const { photographers }  = await this.datas.getAllDatas();
-        // console.log(photographers);
-    //     // this.displayData(photographers);
-    //     const { datas } = await this.datas.getAllData();
-    //    console.log('yep', datas.length);
+        const { photographers }  = await this.datas.getAllData();
+        // console.log(this.proxy.HomePage(photographers));
+        this.proxy.HomePage(photographers);
+        this.displayData(photographers);
+
     }
 
 

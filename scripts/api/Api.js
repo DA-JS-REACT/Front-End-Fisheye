@@ -4,7 +4,7 @@ class Api {
     }
     async getAllData() {
 
-        fetch(this.url)
+        return fetch(this.url)
             .then(function(response) {
                 return response.json();
             })
@@ -20,7 +20,3 @@ class Api {
 
 
 export {Api};
-const api = new Api('../data/photographers.json');
-let test  = api.getAllData();
-console.log(test.media); 
-
