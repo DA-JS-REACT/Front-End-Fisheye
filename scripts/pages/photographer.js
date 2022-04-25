@@ -1,5 +1,7 @@
 //Mettre le code JavaScript lié à la page photographer.html
 import { Api } from '../api/Api.js';
+import { PhotographerPageFactory } from '../factories/PhotographerPage.js';
+import { MediaFactory } from '../factories/MediaFactory.js';
 
 
 
@@ -9,7 +11,8 @@ class PagePhotographer {
     constructor() {
         const newLocal = '../data/photographers.json';
         this.datas = new Api(newLocal);
-        this.photographersPage = document.querySelector('.photographer-content');
+        this.photographHeader = document.querySelector('.photograph-header');
+        this.photographSection = document.getElementById('main');
         this.urlsearch = new URLSearchParams(window.location.search);
     }
     /**
@@ -18,14 +21,47 @@ class PagePhotographer {
      * @param {number} id
      */
     async  displayOnePhotographer(photographers ,id ) {
-
-        photographers.forEach(Photographer => {
-            if (Photographer.id  === id) {
-                console.log(Photographer.name);
-                let h2 = document.createElement('h2');
-                h2.textContent = Photographer.name;
-                this.photographersPage.appendChild(h2);
+        photographers.forEach(photographer => {
+            const photographerModel = new PhotographerPageFactory(
+                photographer.id,
+                photographer.name,
+                photographer.portrait,
+                photographer.city,
+                photographer.country,
+                photographer.tagline,
+                photographer.price,
+            );
+            if (photographer.id  === id) {
+                photographerModel.getPageMainHeader().forEach(elt => {
+                    this.photographHeader.appendChild(elt );
+                });
             }
+        });
+    }
+
+    async displayMedia(medias, id ) {
+        const section = document.createElement('section');
+        section.classList.add('photograph-section');
+        this.photographSection.appendChild(section);
+        const div = document.createElement('div');
+        div.classList.add('photograph-picture');
+        section.appendChild(div);
+        medias.forEach(media => {
+            const mediaModel = new MediaFactory(
+                media.id,
+                media.photographerId,
+                media.title,
+                media.image,
+                media.likes,
+                media.date,
+                media.price,
+            );
+            
+            if(media.photographerId === id) {
+                const photographPicture = mediaModel.getPageMainSections();
+                div.appendChild(photographPicture);
+            }
+
         });
     }
     async init() {
@@ -34,6 +70,8 @@ class PagePhotographer {
         console.log(photographerId);
         const { photographers }  = await this.datas.getAllData();
         this.displayOnePhotographer(photographers,photographerId);
+        const { media } = await this.datas.getAllData();
+        this.displayMedia(media,photographerId);
     }
 }
 

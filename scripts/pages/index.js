@@ -1,6 +1,8 @@
 import { Api } from '../api/Api.js';
-import { PhotographerFactory } from '../factories/Photographer.js' ;
+import { PhotographerHomeFactory } from '../factories/PhotographersHome.js' ;
+//import {Photographer} from '../models/photographer.js';
 import { Proxy } from '../Proxy/Proxy.js' ;
+
 
 class Home  {
 
@@ -19,7 +21,7 @@ class Home  {
     async displayData(photographers) {
 
         photographers.forEach((photographer) => {
-            const photographerModel = new PhotographerFactory(
+            const photographerModel = new PhotographerHomeFactory(
                 photographer.id,
                 photographer.name,
                 photographer.portrait,
@@ -31,12 +33,19 @@ class Home  {
             const userCardDOM = photographerModel.getUserCardDOM();
             this.photographersSection.appendChild(userCardDOM);
         });
+        // photographers.forEach((photographer) => {
+        //     const photographerModel = new PhotographerFactory('home',photographer);
+        //     // const userCardDOM = photographerModel.getUserCardDOM();
+        //     // console.log(userCardDOM);
+        //     this.photographersSection.appendChild(photographerModel);
+        // });
+       
+       
     }
     async  init() {
         //Récupère les datas des photographes
         const { photographers }  = await this.datas.getAllData();
-        // console.log(this.proxy.HomePage(photographers));
-        this.proxy.HomePage(photographers);
+        
         this.displayData(photographers);
 
     }

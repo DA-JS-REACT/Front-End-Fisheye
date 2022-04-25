@@ -19,8 +19,7 @@
             text-decoration: none;
         }
         &__title {
-            color: $colorSecondary;
-            font-size: 36px;
+            @include title-name;
         }
         &__img{
             height: 200px;

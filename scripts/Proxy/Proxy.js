@@ -12,18 +12,20 @@ class Proxy {
      * @param {array} photographers
      */
     async HomePage(photographers) {
-        photographers.forEach(photographersCashed => {
-            //console.log('loop',photographersCashed.id);
-            const cashedResults = this.cache.filter(cacheId => cacheId === photographersCashed.id);
+        photographers.forEach(test => {
+        // console.log('loop',test.id);
+        // console.log('loop',this.cache);
+            const cashedResults = this.cache.filter(cashedPhotographers => cashedPhotographers.id === test.id);
             console.log('cashedResults',cashedResults);
             if(cashedResults){
                 console.log('yes', this.cache);
-                return cashedResults;
+                return this.cache;
             }
-            this.cache.push(photographers);
-            //console.log('server',photographers);
-            return photographers;
         });
+        this.cache.push(photographers);
+        console.log('server',this.cache);
+        return photographers;
+
 
     }
 }
