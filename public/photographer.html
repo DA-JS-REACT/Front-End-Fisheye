@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -14,7 +15,7 @@
     <main id="main">
       <div class="photograph-header">
         <div class="photograph-button">
-            <button class="contact_button " onclick="displayModal()">Contactez-moi</button>
+            <button class="contact_button">Contactez-moi</button>
         </div>
       </div>
     </main>
@@ -22,18 +23,30 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img class="close" src="assets/icons/close.svg"  />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
+				<form class="form-contact" action="#">
+          <div class="formData">
+            <label for="first">Prénom</label>
+            <input class="text-control" type="text"  id="first" name="first" minlength="2" />
+          </div>
+          <div  class="formData">
+            <label for="last">Nom</label><br>
+            <input  class="text-control"  type="text" id="last" name="last"  />
+          </div>
+          <div  class="formData">
+            <label for="email">E-mail</label>
+            <input  class="text-control"  type="email"  id="email"  name="email"  />
+          </div>
+          <div  class="formData">
+            <label for="message">Votre message</label>
+            <textarea class="text-control"  type="textarea"  id="message"  name="message" ></textarea>
+          </div>
+          <button type="submit" class="contact_submit">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <script type="module" src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script  type="module" src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

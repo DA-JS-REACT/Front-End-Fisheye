@@ -19,7 +19,7 @@ class Proxy {
             console.log('cashedResults',cashedResults);
             if(cashedResults){
                 console.log('yes', this.cache);
-                return this.cache;
+                return cashedResults;
             }
         });
         this.cache.push(photographers);

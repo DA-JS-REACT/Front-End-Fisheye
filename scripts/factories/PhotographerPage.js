@@ -12,6 +12,10 @@ class PhotographerPageFactory {
 
     }
 
+    /**
+     * 
+     * @returns  {HtmlElement}
+     */
     getPageMainHeader() {
 
         const divContent = document.createElement('div');

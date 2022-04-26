@@ -1,0 +1,8 @@
+.contact_button,
+.contact_submit {
+    @include btn;
+}
+.contact_submit {
+    width: 120px;
+    height:50px;
+}

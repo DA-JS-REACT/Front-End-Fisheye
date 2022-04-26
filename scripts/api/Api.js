@@ -9,7 +9,7 @@ class Api {
                 return response.json();
             })
             .then( (datas) => {
-                console.log('data :', datas);
+                //console.log('data :', datas);
                 return datas;
             })
             .catch(err => console.log('Nope', err));
