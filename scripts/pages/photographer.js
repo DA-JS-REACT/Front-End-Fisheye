@@ -56,7 +56,11 @@ class PagePhotographer {
         this.displaySort(section);
         // permet de récupérer le photographe correspondant à la page
         const photographer = photographers.find(photographerId => photographerId.id === id);
-        medias.forEach(media => {
+
+        const resultMedia = medias.filter(media => media.photographerId === id);
+
+        resultMedia.forEach(media => {
+
             const mediaModel = new MediaFactory(
                 media.id,
                 media.photographerId,
@@ -67,11 +71,8 @@ class PagePhotographer {
                 media.date,
                 media.price,
             );
-            if(media.photographerId === id) {
-                const photographPicture = mediaModel.getPageMainSections(photographer);
-                div.appendChild(photographPicture);
-            }
-
+            const photographPicture = mediaModel.getPageSectionsArticle(photographer,mediaModel);
+            div.appendChild(photographPicture);
         });
 
     }
@@ -89,9 +90,9 @@ class PagePhotographer {
         //TODO check id get with regex pattern
         const photographerId = parseInt(this.urlsearch.get('id'));
         //console.log(photographerId);
-        const { photographers }  = await this.datas.getAllData();
+        const data  = await this.datas.getAllData();
+        const {photographers, media } = data;
         this.displayOnePhotographer(photographers,photographerId);
-        const { media } = await this.datas.getAllData();
         this.displayMedia(media,photographerId,photographers);
 
       
