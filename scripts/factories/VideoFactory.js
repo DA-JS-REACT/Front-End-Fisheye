@@ -10,6 +10,7 @@ class VideoFactory {
 
     displayVideo(photographer){
 
+        // Recupére le nom du photographe pour contruire le chemin
         const pattern = /\s*(-| )\s*/;
         const firstname = photographer.name.split(pattern );
 

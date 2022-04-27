@@ -10,13 +10,12 @@ class ImageFactory {
 
     displayImage(photographer){
 
+        // Recupére le nom du photographe pour contruire le chemin
         const pattern = /\s*(-| )\s*/;
         const firstname = photographer.name.split(pattern );
 
         const picture = './assets/images/'+ firstname[0]+'/';
 
-        // const article = document.createElement('article');
-        // article.classList.add('article-picture');
 
         const link = document.createElement('a');
         link.classList.add('card-link');
@@ -27,28 +26,6 @@ class ImageFactory {
         img.setAttribute('alt', this.title);
 
         link.appendChild(img);
-
-        // const div = document.createElement('div');
-        // div.classList.add('card-content');
-
-        // const title = document.createElement('h3');
-        // title.textContent = this.title;
-        // div.appendChild(title);
-
-        // const p = document.createElement( 'p');
-        // const span = document.createElement( 'span');
-        // span.textContent = this.likes;
-        // p.appendChild(span);
-
-        // const i = document.createElement( 'i');
-        // i.classList.add('fa-solid', 'fa-heart');
-        // p.appendChild(i);
-
-        // div.appendChild(p);
-
-        // article.appendChild(link);
-        // article.appendChild(div);
-
         return link;
 
     }

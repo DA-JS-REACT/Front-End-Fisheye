@@ -3,6 +3,7 @@ import { Api } from '../api/Api.js';
 import { PhotographerPageFactory } from '../factories/PhotographerPage.js';
 import { MediaFactory } from '../factories/MediaFactory.js';
 import { SortFactory } from '../factories/SortFactory.js';
+import {SorterMedia } from '../utils/SorterMedia.js';
 
 
 
@@ -16,6 +17,7 @@ class PagePhotographer {
         this.photographHeader = document.querySelector('.photograph-header');
         this.photographSection = document.getElementById('main');
         this.urlsearch = new URLSearchParams(window.location.search);
+        this.Sort = new SorterMedia();
     }
     /**
      *
@@ -58,9 +60,12 @@ class PagePhotographer {
         const photographer = photographers.find(photographerId => photographerId.id === id);
 
         const resultMedia = medias.filter(media => media.photographerId === id);
+        console.log('1',medias);
+
+        const test = 'asc';
+        this.Sort.OrderBy(resultMedia,test);
 
         resultMedia.forEach(media => {
-
             const mediaModel = new MediaFactory(
                 media.id,
                 media.photographerId,
