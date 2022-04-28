@@ -18,6 +18,7 @@ class PagePhotographer {
         this.photographSection = document.getElementById('main');
         this.urlsearch = new URLSearchParams(window.location.search);
         this.Sort = new SorterMedia();
+        // this.select = document.querySelector('.select-sort');
     }
     /**
      *
@@ -60,11 +61,9 @@ class PagePhotographer {
         const photographer = photographers.find(photographerId => photographerId.id === id);
 
         const resultMedia = medias.filter(media => media.photographerId === id);
-        console.log('1',medias);
 
-        const test = 'asc';
-        this.Sort.OrderBy(resultMedia,test);
-
+       
+   
         resultMedia.forEach(media => {
             const mediaModel = new MediaFactory(
                 media.id,
@@ -99,8 +98,8 @@ class PagePhotographer {
         const {photographers, media } = data;
         this.displayOnePhotographer(photographers,photographerId);
         this.displayMedia(media,photographerId,photographers);
+        // this.Sort.Change(media,photographers,photographerId);
 
-      
     }
 }
 

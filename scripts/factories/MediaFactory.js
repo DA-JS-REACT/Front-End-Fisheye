@@ -59,7 +59,7 @@ class MediaFactory {
         div.classList.add('card-content');
 
         const title = document.createElement('h3');
-        title.textContent = this.title;
+        title.textContent = this.title + this.date;
         div.appendChild(title);
 
         const p = document.createElement( 'p');
@@ -77,27 +77,6 @@ class MediaFactory {
         article.appendChild(div);
 
         return article;
-
-        // const pattern = /\s*(-| )\s*/;
-        // const firstname = photographer.name.split(pattern );
-
-        // const picture = './assets/images/'+ firstname[0]+'/';
-
-        // const article = document.createElement('article');
-        // article.classList.add('article-picture');
-
-        // const medias = this.image  ? `<img class="card-link__img" src=" ${picture}${this.image}" alt="${this.title}" >` : `<video class="card-link__img" controls src="${picture}${this.video}">Ici la description alternative</video>
-        // `;
-        // const card = `
-        //     <a class="card-link" href=""> ${medias} </a>
-        //      <div class="card-content">
-        //         <h3>${this.title}</h3> '
-        //         <p><span>${this.likes}</span> <i class="fa-solid fa-heart fa-5x"></i> </p>
-        //      </div>
-        //         `;
-        // // div.innerHTML = article;
-        // article.innerHTML = card;
-        // return article;
 
     }
 
