@@ -61,10 +61,12 @@ class PagePhotographer {
         const photographer = photographers.find(photographerId => photographerId.id === id);
 
         const resultMedia = medias.filter(media => media.photographerId === id);
-
-       
-   
-        resultMedia.forEach(media => {
+        // appel du tri  des médias
+        this.Sort.ChangeDisplayMedia(resultMedia,photographers,id);
+        // par défault tri par pupularité
+        resultMedia.sort((a,b) =>{
+            return b.likes - a.likes;
+        }).forEach(media => {
             const mediaModel = new MediaFactory(
                 media.id,
                 media.photographerId,
@@ -98,7 +100,7 @@ class PagePhotographer {
         const {photographers, media } = data;
         this.displayOnePhotographer(photographers,photographerId);
         this.displayMedia(media,photographerId,photographers);
-        // this.Sort.Change(media,photographers,photographerId);
+        
 
     }
 }

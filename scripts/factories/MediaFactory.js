@@ -59,7 +59,7 @@ class MediaFactory {
         div.classList.add('card-content');
 
         const title = document.createElement('h3');
-        title.textContent = this.title + this.date;
+        title.textContent = this.title;
         div.appendChild(title);
 
         const p = document.createElement( 'p');
