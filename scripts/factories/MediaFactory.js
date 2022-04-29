@@ -19,6 +19,13 @@ class MediaFactory {
 
 
 
+    getLikes() { return this.likes; }
+    /**
+     * @param {number} value
+     */
+    setLikes(value) {
+        this.likes = value;
+    }
     /**
      *
      * @returns  {HtmlElement}
@@ -48,11 +55,13 @@ class MediaFactory {
 
         const p = document.createElement( 'p');
         const span = document.createElement( 'span');
+        span.classList.add('counter');
+        span.setAttribute('id', this.id);
         span.textContent = this.likes;
         p.appendChild(span);
 
         const i = document.createElement( 'i');
-        i.classList.add('fa-solid', 'fa-heart');
+        i.classList.add('fa-solid', 'fa-heart','likes-counter');
         p.appendChild(i);
 
         div.appendChild(p);

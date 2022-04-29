@@ -17,6 +17,9 @@ class Photographer {
     }
 
     get name() { return this.name; }
+    set name(value) {
+        this.name = value;
+    }
 
     get city() { return this.city; }
 

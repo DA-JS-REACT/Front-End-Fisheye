@@ -4,6 +4,7 @@ import { PhotographerPageFactory } from '../factories/PhotographerPage.js';
 import { MediaFactory } from '../factories/MediaFactory.js';
 import { SortFactory } from '../factories/SortFactory.js';
 import {SorterMedia } from '../utils/SorterMedia.js';
+import{LikesService}  from '../utils/Likes.js';
 
 
 
@@ -18,6 +19,7 @@ class PagePhotographer {
         this.photographSection = document.getElementById('main');
         this.urlsearch = new URLSearchParams(window.location.search);
         this.Sort = new SorterMedia();
+        this.likes = new LikesService();
         // this.select = document.querySelector('.select-sort');
     }
     /**
@@ -58,9 +60,7 @@ class PagePhotographer {
         const photographer = photographers.find(photographerId => photographerId.id === id);
 
         const resultMedia = medias.filter(media => media.photographerId === id);
-
-        
-
+        // this.likes.countLikes(resultMedia);
         // appel du tri  des médias
         this.Sort.ChangeDisplayMedia(resultMedia,photographers,id);
         // par défault tri par pupularité
@@ -81,7 +81,7 @@ class PagePhotographer {
             div.appendChild(photographPicture);
         });
 
-        this.getFooterPage(photographer);
+        this.getFooterPage(photographer,resultMedia);
 
     }
     /**
@@ -111,7 +111,7 @@ class PagePhotographer {
         return section;
     }
 
-    getFooterPage(photographer) {
+    getFooterPage(photographer,media) {
         const footer = document.createElement('footer');
         footer.classList.add('photograph-footer');
 
@@ -120,7 +120,12 @@ class PagePhotographer {
 
         const listFirst = document.createElement('li');
         listFirst.classList.add('footer-list__li');
-        listFirst.textContent ='124500';
+        const span = document.createElement('span');
+        span.classList.add('sum-likes');
+        listFirst.appendChild(span);
+
+        const sum = this.likes.SumLikes(media);
+        span.textContent = sum;
         const i = document.createElement( 'i');
         i.classList.add('fa-solid', 'fa-heart');
         listFirst.appendChild(i);
@@ -150,6 +155,7 @@ class PagePhotographer {
         const {photographers, media } = data;
         this.displayOnePhotographer(photographers,photographerId);
         this.displayMedia(media,photographerId,photographers);
+        this.likes.countLikes(media);
 
     }
 }
