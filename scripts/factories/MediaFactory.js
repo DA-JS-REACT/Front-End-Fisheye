@@ -17,22 +17,6 @@ class MediaFactory {
         this.price = price;
     }
 
-    /**
-     *
-     * @returns  {HtmlElement}
-     */
-    getPageMainSection(photographSection) {
-        const section = document.createElement('section');
-        section.classList.add('photograph-section');
-
-        photographSection.appendChild(section);
-
-        const div = document.createElement('div');
-        div.classList.add('photograph-picture');
-
-        section.appendChild(div);
-        return section;
-    }
 
 
     /**
@@ -79,6 +63,8 @@ class MediaFactory {
         return article;
 
     }
+
+  
 
 }
 

@@ -50,17 +50,17 @@ class PagePhotographer {
      * @param {number} id
      */
     async displayMedia(medias, id,photographers) {
-        const section = document.createElement('section');
-        section.classList.add('photograph-section');
-        this.photographSection.appendChild(section);
-        const div = document.createElement('div');
-        div.classList.add('photograph-picture');
-        section.appendChild(div);
+
+        const section = this.getPageMainSection(this.photographSection);
         this.displaySort(section);
+        const div = document.querySelector('.photograph-picture');
         // permet de récupérer le photographe correspondant à la page
         const photographer = photographers.find(photographerId => photographerId.id === id);
 
         const resultMedia = medias.filter(media => media.photographerId === id);
+
+        
+
         // appel du tri  des médias
         this.Sort.ChangeDisplayMedia(resultMedia,photographers,id);
         // par défault tri par pupularité
@@ -81,15 +81,65 @@ class PagePhotographer {
             div.appendChild(photographPicture);
         });
 
+        this.getFooterPage(photographer);
+
     }
     /**
-     *
+     * Inject form for the select
      * @param {HtmlElement} section
      */
 
     displaySort(section) {
         const form = new SortFactory().getSelectSort();
         section.appendChild(form);
+    }
+
+    /**
+     * Inject section with contain div for display media
+     * @returns  {HtmlElement}
+     */
+    getPageMainSection(photographSection) {
+        const section = document.createElement('section');
+        section.classList.add('photograph-section');
+
+        photographSection.appendChild(section);
+
+        const div = document.createElement('div');
+        div.classList.add('photograph-picture');
+
+        section.appendChild(div);
+        return section;
+    }
+
+    getFooterPage(photographer) {
+        const footer = document.createElement('footer');
+        footer.classList.add('photograph-footer');
+
+        const ulElement = document.createElement('ul');
+        ulElement.classList.add('footer-list');
+
+        const listFirst = document.createElement('li');
+        listFirst.classList.add('footer-list__li');
+        listFirst.textContent ='124500';
+        const i = document.createElement( 'i');
+        i.classList.add('fa-solid', 'fa-heart');
+        listFirst.appendChild(i);
+
+
+        const listSecond = document.createElement('li');
+        listSecond.classList.add('footer-list__li');
+        listSecond.textContent = photographer.price + '€'+' ' +'/' +' '+ 'jour';
+
+        ulElement.appendChild(listFirst);
+        ulElement.appendChild(listSecond);
+
+        footer.appendChild(ulElement);
+
+        const body = document.querySelector('body');
+        body.appendChild(footer);
+
+
+        return footer;
     }
 
     async init() {
@@ -100,7 +150,6 @@ class PagePhotographer {
         const {photographers, media } = data;
         this.displayOnePhotographer(photographers,photographerId);
         this.displayMedia(media,photographerId,photographers);
-        
 
     }
 }
