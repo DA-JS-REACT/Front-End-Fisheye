@@ -60,7 +60,7 @@ class PagePhotographer {
         const photographer = photographers.find(photographerId => photographerId.id === id);
 
         const resultMedia = medias.filter(media => media.photographerId === id);
-        // this.likes.countLikes(resultMedia);
+      
         // appel du tri  des médias
         this.Sort.ChangeDisplayMedia(resultMedia,photographers,id);
         // par défault tri par pupularité
@@ -82,7 +82,9 @@ class PagePhotographer {
         });
 
         this.getFooterPage(photographer,resultMedia);
+        this.likes.countLikes(resultMedia);
 
+     
     }
     /**
      * Inject form for the select
@@ -147,15 +149,38 @@ class PagePhotographer {
         return footer;
     }
 
-    async init() {
+    checkUrl(){
         //TODO check id get with regex pattern
-        const photographerId = parseInt(this.urlsearch.get('id'));
-        //console.log(photographerId);
+        const pattern = /^\d+$/gm;
+        const path = /^[?](id)[=]\d+$/gm;
+        
+        if(path.test(location.search)){
+            const photographerId = parseInt(this.urlsearch.get('id'));
+            if (pattern.test(photographerId)) {
+                return photographerId;
+            }else {
+                throw new Error('Invalid id');
+            }
+        }else {
+            throw new Error('Invalid url');
+        }
+        // //console.log(location.pathname, location.search);
+        // const photographerId = parseInt(this.urlsearch.get('id'));
+        // //console.log(pattern.test(photographerId));
+        // if (pattern.test(photographerId)) {
+        //     return photographerId;
+        // }else {
+        //     throw new Error('Invalid');
+        // }
+
+    }
+
+    async init() {
         const data  = await this.datas.getAllData();
         const {photographers, media } = data;
-        this.displayOnePhotographer(photographers,photographerId);
-        this.displayMedia(media,photographerId,photographers);
-        this.likes.countLikes(media);
+        this.displayOnePhotographer(photographers,this.checkUrl());
+        this.displayMedia(media,this.checkUrl(),photographers);
+        //this.likes.countLikes(media);
 
     }
 }

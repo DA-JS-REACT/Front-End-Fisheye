@@ -1,8 +1,13 @@
 import { MediaFactory } from '../factories/MediaFactory.js';
+import{LikesService}  from '../utils/Likes.js';
+
 
 
 class SorterMedia {
 
+    constructor() {
+        this.likes = new LikesService();
+    }
 
     /**
      *
@@ -35,9 +40,11 @@ class SorterMedia {
                 div.removeChild(article);
                 // injecte le nouveau selon le tri
                 div.appendChild(photographPicture);
+                //
             });
-
+            this.likes.countLikes(media);
         });
+        
     }
 
     /**

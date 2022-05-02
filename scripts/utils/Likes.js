@@ -19,37 +19,65 @@ class LikesService {
     }
 
     countLikes(media){
-        const test = document.querySelectorAll('.likes-counter');
+        // cible l'élément cliquer
+        const ClickEvent = document.querySelectorAll('.likes-counter');
+        let value = 0;
+        ClickEvent.forEach(btn => btn.addEventListener('click', evt => {
 
-        test.forEach(btn => btn.addEventListener('click', evt => {
-            let element = evt.currentTarget;
-            let parent = element.parentNode;
-            let test = parent.querySelector('.counter');
-            let id = parseInt(test.getAttribute('id'));
+            const element = evt.currentTarget;
+            // cible l'élément qui affiche le nombre de likes en fonction du click;
+            const nbrLikes = element.previousElementSibling;
+            nbrLikes.setAttribute('disabled',true);
 
-            let value = parseInt(test.textContent);
-            value  += 1;
-            test.textContent = value;
-          
-            console.log(value);
-            this.refershLikes(media ,value,id);
+            //récupére l'id du media courant
+            const id = parseInt(nbrLikes.getAttribute('id'));
+            // récupére la valeur du nombre de likes
+            let value = parseInt(nbrLikes.textContent);
+            // value  += 1;
+            // //réinjecte la valeur incrémenté
+            // nbrLikes.textContent = value ;
+            this.refreshLikes(media,value,id);
+            this.stopCounters(nbrLikes ,element, value);
+
         }));
+
+
     }
 
-    refershLikes(media,value,id) {
+
+    refreshLikes(media,value,id) {
+
+
 
         const medias = media.find(Id => Id.id === id);
-        console.log('after',medias.likes);
-        let footer = document.querySelector('.sum-likes');
-        console.log(footer);
+
+        const footer = document.querySelector('.sum-likes');
         let valueFooter = parseInt(footer.textContent);
         valueFooter += 1;
+        medias.likes = value;
+        footer.textContent = valueFooter;
 
-        footer.textContent= valueFooter;
-
-       
-      
     }
+
+    stopCounters(nbrLikes,element,value) {
+        const search = nbrLikes.getAttribute('disabled');
+        console.log(element);
+        if(search){
+            console.log(element);
+            element.style.backgroundColor = 'red';
+            value  += 1;
+            nbrLikes.textContent = value ;
+
+        }else {
+            nbrLikes.removeAttribute('disabled');
+            value = 0;
+            nbrLikes.textContent = value ;
+            element.style.backgroundColor = 'green';
+
+        }
+
+    }
+
 
 
 }
