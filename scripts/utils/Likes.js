@@ -14,30 +14,29 @@ class LikesService {
             const count = likes.likes;
             sum  += count;
         });
-        console.log(sum);
         return sum;
     }
 
     countLikes(media){
         // cible l'élément cliquer
         const ClickEvent = document.querySelectorAll('.likes-counter');
-        let value = 0;
+        //let bool = false;
         ClickEvent.forEach(btn => btn.addEventListener('click', evt => {
 
             const element = evt.currentTarget;
             // cible l'élément qui affiche le nombre de likes en fonction du click;
             const nbrLikes = element.previousElementSibling;
-            nbrLikes.setAttribute('disabled',true);
+            element.classList.add('active');
 
             //récupére l'id du media courant
             const id = parseInt(nbrLikes.getAttribute('id'));
             // récupére la valeur du nombre de likes
             let value = parseInt(nbrLikes.textContent);
-            // value  += 1;
+            value  += 1;
             // //réinjecte la valeur incrémenté
-            // nbrLikes.textContent = value ;
+            nbrLikes.textContent = value ;
             this.refreshLikes(media,value,id);
-            this.stopCounters(nbrLikes ,element, value);
+            // this.stopCounters(bool,element, value,nbrLikes);
 
         }));
 
@@ -59,24 +58,13 @@ class LikesService {
 
     }
 
-    stopCounters(nbrLikes,element,value) {
-        const search = nbrLikes.getAttribute('disabled');
-        console.log(element);
-        if(search){
-            console.log(element);
-            element.style.backgroundColor = 'red';
-            value  += 1;
-            nbrLikes.textContent = value ;
+    // stopCounters(bool,element,value,nbrLikes) {
+    //     //const search = element.classList.contains('active') ? value += 1 : value = 1;
+    //  if(!bool){
+    //     nbrLikes.textContent = value;
+    //  }
 
-        }else {
-            nbrLikes.removeAttribute('disabled');
-            value = 0;
-            nbrLikes.textContent = value ;
-            element.style.backgroundColor = 'green';
-
-        }
-
-    }
+    // }
 
 
 

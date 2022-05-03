@@ -5,6 +5,7 @@ import { MediaFactory } from '../factories/MediaFactory.js';
 import { SortFactory } from '../factories/SortFactory.js';
 import {SorterMedia } from '../utils/SorterMedia.js';
 import{LikesService}  from '../utils/Likes.js';
+import {ligthBox} from '../utils/ligthBox.js';
 
 
 
@@ -20,6 +21,7 @@ class PagePhotographer {
         this.urlsearch = new URLSearchParams(window.location.search);
         this.Sort = new SorterMedia();
         this.likes = new LikesService();
+        this.ligthBox = new ligthBox();
         // this.select = document.querySelector('.select-sort');
     }
     /**
@@ -59,8 +61,13 @@ class PagePhotographer {
         // permet de récupérer le photographe correspondant à la page
         const photographer = photographers.find(photographerId => photographerId.id === id);
 
+        // name for the form
+        const titleForm = document.querySelector('.title-form');
+
+        const title = titleForm.querySelector('.title');
+        title.textContent = photographer.name;
+
         const resultMedia = medias.filter(media => media.photographerId === id);
-      
         // appel du tri  des médias
         this.Sort.ChangeDisplayMedia(resultMedia,photographers,id);
         // par défault tri par pupularité
@@ -79,12 +86,13 @@ class PagePhotographer {
             );
             const photographPicture = mediaModel.getPageSectionsArticle(photographer,mediaModel);
             div.appendChild(photographPicture);
+
         });
 
         this.getFooterPage(photographer,resultMedia);
         this.likes.countLikes(resultMedia);
+        this.ligthBox.displayLigthBox(photographer,resultMedia);
 
-     
     }
     /**
      * Inject form for the select
@@ -153,7 +161,7 @@ class PagePhotographer {
         //TODO check id get with regex pattern
         const pattern = /^\d+$/gm;
         const path = /^[?](id)[=]\d+$/gm;
-        
+
         if(path.test(location.search)){
             const photographerId = parseInt(this.urlsearch.get('id'));
             if (pattern.test(photographerId)) {
@@ -164,15 +172,6 @@ class PagePhotographer {
         }else {
             throw new Error('Invalid url');
         }
-        // //console.log(location.pathname, location.search);
-        // const photographerId = parseInt(this.urlsearch.get('id'));
-        // //console.log(pattern.test(photographerId));
-        // if (pattern.test(photographerId)) {
-        //     return photographerId;
-        // }else {
-        //     throw new Error('Invalid');
-        // }
-
     }
 
     async init() {
@@ -180,7 +179,7 @@ class PagePhotographer {
         const {photographers, media } = data;
         this.displayOnePhotographer(photographers,this.checkUrl());
         this.displayMedia(media,this.checkUrl(),photographers);
-        //this.likes.countLikes(media);
+        this.ligthBox.initializeModal();
 
     }
 }

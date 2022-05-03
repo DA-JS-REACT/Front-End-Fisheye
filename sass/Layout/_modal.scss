@@ -1,4 +1,5 @@
-#contact_modal {
+#contact_modal,
+#ligthbox {
     display: none;
     position: fixed;
     z-index: 1;
@@ -10,7 +11,8 @@
     background-color: rgba(26, 39, 156, 0.4);
 }
 
-.modal {
+.modal,
+.modal-ligthbox {
     margin: 5% auto;
     border-radius: 5px;
     background-color: #DB8876;
@@ -22,6 +24,19 @@
     padding: 35px;
     position: relative;
 
+}
+
+.modal-ligthbox {
+    background-color: white;
+    height:500px;
+    display: flex;
+    flex-direction: row;
+    &__next {
+        background-color:red;
+        .close-ligthbox{
+            cursor:pointer;
+        }
+    }
 }
 
 .modal header {
@@ -39,3 +54,4 @@
     font-weight: normal;
     text-align: center;
 }
+

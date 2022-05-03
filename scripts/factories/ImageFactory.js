@@ -17,16 +17,16 @@ class ImageFactory {
         const picture = './assets/images/'+ firstname[0]+'/';
 
 
-        const link = document.createElement('a');
-        link.classList.add('card-link');
+        // const link = document.createElement('a');
+        // link.classList.add('card-link');
 
         const img = document.createElement('img');
         img.classList.add('card-link__img');
         img.setAttribute('src', picture + this.image);
         img.setAttribute('alt', this.title);
 
-        link.appendChild(img);
-        return link;
+        // link.appendChild(img);
+        return img;
 
     }
 

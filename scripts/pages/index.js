@@ -1,6 +1,5 @@
 import { Api } from '../api/Api.js';
 import { PhotographerHomeFactory } from '../factories/PhotographersHome.js' ;
-//import {Photographer} from '../models/photographer.js';
 import { Proxy } from '../Proxy/Proxy.js' ;
 
 
@@ -39,13 +38,13 @@ class Home  {
         //     // console.log(userCardDOM);
         //     this.photographersSection.appendChild(photographerModel);
         // });
-       
-       
+
+
     }
     async  init() {
         //Récupère les datas des photographes
         const { photographers }  = await this.datas.getAllData();
-        
+
         this.displayData(photographers);
 
     }

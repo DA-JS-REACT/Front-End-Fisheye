@@ -32,20 +32,23 @@ class MediaFactory {
      */
     getPageSectionsArticle(photographer,media) {
 
+
         const article = document.createElement('article');
         article.classList.add('article-picture');
+        const link = document.createElement('a');
+        link.classList.add('card-link');
 
         if(media.video){
             const video = new VideoFactory(this.video,this.title,this.likes,this.date);
-            const link = video.displayVideo(photographer);
-            article.appendChild(link);
+            const linkElement = video.displayVideo(photographer);
+            link.appendChild(linkElement);
         } else if (media.image){
             const img = new ImageFactory(this.image,this.title,this.likes,this.date);
-            const link = img.displayImage(photographer);
-            article.appendChild(link);
+            const linkElement = img.displayImage(photographer);
+            link.appendChild(linkElement);
         }
 
-
+        article.appendChild(link);
         const div = document.createElement('div');
         div.classList.add('card-content');
 
