@@ -1,11 +1,11 @@
 //Mettre le code JavaScript lié à la page photographer.html
 import { Api } from '../api/Api.js';
 import { PhotographerPageFactory } from '../factories/PhotographerPage.js';
-import { MediaFactory } from '../factories/MediaFactory.js';
+import { ArticleMedia } from '../templates/articleMedia.js';
 import { SortFactory } from '../factories/SortFactory.js';
 import {SorterMedia } from '../utils/SorterMedia.js';
 import{LikesService}  from '../utils/Likes.js';
-import {ligthBox} from '../utils/ligthBox.js';
+import {LigthBox} from '../utils/ligthBox.js';
 
 
 
@@ -21,7 +21,7 @@ class PagePhotographer {
         this.urlsearch = new URLSearchParams(window.location.search);
         this.Sort = new SorterMedia();
         this.likes = new LikesService();
-        this.ligthBox = new ligthBox();
+        this.ligthBox = new LigthBox();
         // this.select = document.querySelector('.select-sort');
     }
     /**
@@ -74,7 +74,7 @@ class PagePhotographer {
         resultMedia.sort((a,b) =>{
             return b.likes - a.likes;
         }).forEach(media => {
-            const mediaModel = new MediaFactory(
+            const mediaModel = new ArticleMedia(
                 media.id,
                 media.photographerId,
                 media.title,
@@ -91,7 +91,13 @@ class PagePhotographer {
 
         this.getFooterPage(photographer,resultMedia);
         this.likes.countLikes(resultMedia);
-        this.ligthBox.displayLigthBox(photographer,resultMedia);
+
+        // this.ligthBox.displayLigthBox(photographer,resultMedia);
+        console.log('controller',resultMedia);
+        const divImg = document.querySelector('.modal-ligthbox__img');
+        console.log(divImg.hasChildNodes('img'));
+        this.ligthBox.initializeModal(photographer,resultMedia,divImg);
+
 
     }
     /**
@@ -134,7 +140,7 @@ class PagePhotographer {
         span.classList.add('sum-likes');
         listFirst.appendChild(span);
 
-        const sum = this.likes.SumLikes(media);
+        const sum = this.likes.sumLikes(media);
         span.textContent = sum;
         const i = document.createElement( 'i');
         i.classList.add('fa-solid', 'fa-heart');
@@ -175,11 +181,12 @@ class PagePhotographer {
     }
 
     async init() {
+        this.ligthBox.displayLigthBox();
         const data  = await this.datas.getAllData();
         const {photographers, media } = data;
         this.displayOnePhotographer(photographers,this.checkUrl());
         this.displayMedia(media,this.checkUrl(),photographers);
-        this.ligthBox.initializeModal();
+      
 
     }
 }

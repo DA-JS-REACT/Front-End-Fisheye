@@ -1,14 +1,12 @@
 class ImageFactory {
 
-    constructor (image ,title,likes,date) {
-        this.image = image;
-        this.title = title;
-        this.likes = likes;
-        this.date = date;
+    constructor (media) {
+        this.media = media;
+     
     }
 
 
-    displayImage(photographer){
+    displayMedia(photographer,name){
 
         // Recupére le nom du photographe pour contruire le chemin
         const pattern = /\s*(-| )\s*/;
@@ -17,15 +15,11 @@ class ImageFactory {
         const picture = './assets/images/'+ firstname[0]+'/';
 
 
-        // const link = document.createElement('a');
-        // link.classList.add('card-link');
-
         const img = document.createElement('img');
-        img.classList.add('card-link__img');
-        img.setAttribute('src', picture + this.image);
-        img.setAttribute('alt', this.title);
+        img.classList.add('card-link__media','card-link__media--'+ name);
+        img.setAttribute('src', picture + this.media.image);
+        img.setAttribute('alt', this.media.title);
 
-        // link.appendChild(img);
         return img;
 
     }

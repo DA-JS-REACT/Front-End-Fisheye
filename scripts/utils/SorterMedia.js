@@ -1,5 +1,7 @@
-import { MediaFactory } from '../factories/MediaFactory.js';
+
+import { ArticleMedia } from '../templates/articleMedia.js';
 import{LikesService}  from '../utils/Likes.js';
+import {LigthBox} from '../utils/ligthBox.js';
 
 
 
@@ -7,6 +9,7 @@ class SorterMedia {
 
     constructor() {
         this.likes = new LikesService();
+        this.ligthBox = new LigthBox();
     }
 
     /**
@@ -22,7 +25,7 @@ class SorterMedia {
             const inputValue = event.target.value;
             const photographer = photographers.find(photographerId => photographerId.id === id);
             this.OrderBy(media,inputValue).forEach(SortMedia => {
-                const mediaModel = new MediaFactory(
+                const mediaModel = new ArticleMedia(
                     SortMedia.id,
                     SortMedia.photographerId,
                     SortMedia.title,
@@ -43,6 +46,8 @@ class SorterMedia {
                 //
             });
             this.likes.countLikes(media);
+            const divImg = document.querySelector('.modal-ligthbox__img');
+            this.ligthBox.initializeModal(photographer,media,divImg);
         });
         
     }

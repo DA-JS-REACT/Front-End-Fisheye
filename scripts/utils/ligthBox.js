@@ -1,16 +1,19 @@
-import {ImageFactory} from '../factories/ImageFactory.js';
-import{VideoFactory} from '../factories/VideoFactory.js';
 
-class ligthBox {
+import { MediaFactory } from '../factories/MediaFactory.js';
+
+class LigthBox {
 
 
 
-    initializeModal(){
+    initializeModal(photographer,media,divImg){
         const link = document.querySelectorAll('.card-link');
         link.forEach((img) => img.addEventListener('click',this.launchLigthBox));
-        link.forEach((img) => img.addEventListener('click',this.test));
+        link.forEach((img) => img.addEventListener('click',(evt) => {
+            this.test(evt,photographer,media,divImg);
 
-        const modalClose = document.querySelector('.close-ligthbox');
+        } ));
+
+        const modalClose = document.querySelector('#close-ligthbox');
         modalClose.addEventListener('click', this.closeLigthBox);
 
 
@@ -25,9 +28,54 @@ class ligthBox {
         const modal = document.getElementById('ligthbox');
         modal.style.display = 'none';
     }
+    test(evt,photographer,media,divImg){
 
-    displayLigthBox(photographer,media) {
+        const element = evt.currentTarget;
+        const tab =[];
+        const next = element.nextElementSibling;
+        const idElement = next.querySelector('.counter');
+        const id = parseInt(idElement.getAttribute('id'));
+        const medias = media.find(test => test.id === id);
+        tab.push(medias);
+        console.log(tab);
+        const toto =  tab.map(function(e) { return e.id; }).indexOf(id);
+        console.log(toto);
+        if (element){
+            this.typeOfMedia(photographer,tab[0],divImg);
+        }
 
+
+    }
+
+    typeOfMedia(photographer,media,divImg){
+
+    
+        const img = new MediaFactory(media, 'image').displayMedia(photographer,'img');
+    
+        const video = new MediaFactory(media, 'video').displayMedia(photographer,'video');
+        if(media.video){
+            if(divImg.hasChildNodes('img') || divImg.hasChildNodes('video')){
+                const old = divImg.firstChild;
+                divImg.replaceChild(video,old);
+            }else {
+                divImg.appendChild(video);
+            }
+        } else if (media.image){
+            if(divImg.hasChildNodes('img') || divImg.hasChildNodes('video')){
+                const old = divImg.firstChild;
+                divImg.replaceChild(img,old);
+            }else {
+                divImg.appendChild(img);
+            }
+
+
+        }
+        console.log(divImg.hasChildNodes('img'));
+
+
+    }
+
+    displayLigthBox() {
         const bodyElement = document.querySelector('body');
         const modal = document.createElement('div');
         modal.setAttribute('id', 'ligthbox');
@@ -54,43 +102,14 @@ class ligthBox {
         //create button for close modal
         const closeElement = document.createElement('img');
         closeElement.classList.add('close-ligthbox');
+        closeElement.setAttribute('id','close-ligthbox');
         closeElement.setAttribute('src','assets/icons/close.svg');
 
         divNext.appendChild(closeElement);
-
-
-        if(media.video){
-            const video = new VideoFactory(this.video,this.title,this.likes,this.date);
-            const divElement = video.displayVideo(photographer);
-            divImg.appendChild(divElement);
-        } else if (media.image){
-            const img = new ImageFactory(this.image,this.title,this.likes,this.date);
-            const divElement = img.displayImage(photographer);
-            divImg.appendChild(divElement);
-        }
-
-        //!  only test
-        const h1 =  document.createElement('h1');
-        h1.textContent = media.id;
-        divImg.appendChild(h1);
 
         modal.appendChild(div);
         bodyElement.appendChild(modal);
     }
 
-    test(evt){
-
-        const element = evt.currentTarget;
-        console.log(element);
-
-        const next = element.nextElementSibling;
-        const idElement = next.querySelector('.counter');
-        const id = parseInt(idElement.getAttribute('id'));
-        console.log(id);
-
-
-    }
-
-
 }
-export {ligthBox};
+export {LigthBox};

@@ -1,14 +1,11 @@
 class VideoFactory {
 
-    constructor (video ,title,likes,date) {
-        this.video = video;
-        this.title = title;
-        this.likes = likes;
-        this.date = date;
+    constructor (media) {
+        this.media = media;
     }
 
 
-    displayVideo(photographer){
+    displayMedia(photographer,name){
 
         // Recupére le nom du photographe pour contruire le chemin
         const pattern = /\s*(-| )\s*/;
@@ -16,16 +13,11 @@ class VideoFactory {
 
         const picture = './assets/images/'+ firstname[0]+'/';
 
-        // const link = document.createElement('a');
-        // link.classList.add('card-link');
 
         const video = document.createElement('video');
-        video.classList.add('card-link__img', 'card-link__img--video');
-        video.setAttribute('src', picture + this.video);
+        video.classList.add('card-link__media', 'card-link__media--' + name);
+        video.setAttribute('src', picture + this.media.video);
         // video.setAttribute('controls', '');
-
-        // link.appendChild(video);
-
 
 
         return video;
