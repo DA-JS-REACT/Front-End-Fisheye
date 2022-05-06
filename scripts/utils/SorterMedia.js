@@ -48,6 +48,8 @@ class SorterMedia {
             this.likes.countLikes(media);
             const divImg = document.querySelector('.modal-ligthbox__img');
             this.ligthBox.initializeModal(photographer,media,divImg);
+            // const  index  = media.findIndex((element) => element.title === 'Climber');
+            // console.log(index);
         });
         
     }

@@ -13,7 +13,7 @@ class LigthBox {
 
         } ));
 
-        const modalClose = document.querySelector('#close-ligthbox');
+        const modalClose = document.querySelector('.close-ligthbox');
         modalClose.addEventListener('click', this.closeLigthBox);
 
 
@@ -31,27 +31,22 @@ class LigthBox {
     test(evt,photographer,media,divImg){
 
         const element = evt.currentTarget;
-        const tab =[];
+
         const next = element.nextElementSibling;
         const idElement = next.querySelector('.counter');
         const id = parseInt(idElement.getAttribute('id'));
-        const medias = media.find(test => test.id === id);
-        tab.push(medias);
-        console.log(tab);
-        const toto =  tab.map(function(e) { return e.id; }).indexOf(id);
-        console.log(toto);
-        if (element){
-            this.typeOfMedia(photographer,tab[0],divImg);
-        }
+        const  index  = media.findIndex((element) => element.id === id);
+        console.log(index);
+
+        this.typeOfMedia(photographer,media[index],divImg);
 
 
     }
 
     typeOfMedia(photographer,media,divImg){
 
-    
         const img = new MediaFactory(media, 'image').displayMedia(photographer,'img');
-    
+
         const video = new MediaFactory(media, 'video').displayMedia(photographer,'video');
         if(media.video){
             if(divImg.hasChildNodes('img') || divImg.hasChildNodes('video')){
@@ -70,7 +65,7 @@ class LigthBox {
 
 
         }
-        console.log(divImg.hasChildNodes('img'));
+        console.log(media);
 
 
     }
@@ -84,28 +79,45 @@ class LigthBox {
         const div = document.createElement('div');
         div.classList.add('modal-ligthbox');
 
+        const header = document.createElement('div');
+        header.classList.add('modal-ligthbox__header');
+
+        const slider = document.createElement('div');
+        slider.classList.add('modal-ligthbox__slider','slide');
+
+
         // create div for next button
         const divNext = document.createElement('div');
-        divNext.classList.add('modal-ligthbox__next');
+        divNext.classList.add('slide__next');
 
         //create div for previous button
         const divPrev = document.createElement('div');
-        divPrev.classList.add('modal-ligthbox__prev');
+        divPrev.classList.add('slide__prev');
 
         //create div for img
         const divImg = document.createElement('div');
-        divImg.classList.add('modal-ligthbox__img');
-        div.appendChild(divPrev);
-        div.appendChild(divImg);
-        div.appendChild(divNext);
+        divImg.classList.add('slide__img');
+
+        slider.appendChild(divPrev);
+        slider.appendChild(divImg);
+        slider.appendChild(divNext);
+        div.appendChild(header);
+        div.appendChild(slider);
+
+
+        const iElementPrev = document.createElement( 'i');
+        iElementPrev.classList.add('fa-solid', 'fa-chevron-left','fa-3x');
+        divPrev.appendChild(iElementPrev);
 
         //create button for close modal
-        const closeElement = document.createElement('img');
-        closeElement.classList.add('close-ligthbox');
-        closeElement.setAttribute('id','close-ligthbox');
-        closeElement.setAttribute('src','assets/icons/close.svg');
+        const closeElement = document.createElement('i');
+        closeElement.classList.add('fa-solid' ,'fa-xmark','fa-3x','close-ligthbox');
+        header.appendChild(closeElement);
 
-        divNext.appendChild(closeElement);
+        const iElementNext = document.createElement( 'i');
+        iElementNext.classList.add('fa-solid', 'fa-chevron-right','fa-3x','test');
+
+        divNext.appendChild(iElementNext);
 
         modal.appendChild(div);
         bodyElement.appendChild(modal);

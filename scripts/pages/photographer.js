@@ -94,8 +94,18 @@ class PagePhotographer {
 
         // this.ligthBox.displayLigthBox(photographer,resultMedia);
         console.log('controller',resultMedia);
-        const divImg = document.querySelector('.modal-ligthbox__img');
-        console.log(divImg.hasChildNodes('img'));
+        const  index  = resultMedia.findIndex((element) => element.title === 'Climber');
+        console.log(index);
+        // const isLargeNumber = resultMedia.map((element) => {
+
+        //     if( element.title === 'Climber'){
+               
+        //         console.log('yes',resultMedia.indexOf(element.title));
+        //     }
+
+        // });
+    
+        const divImg = document.querySelector('.slide__img');
         this.ligthBox.initializeModal(photographer,resultMedia,divImg);
 
 
