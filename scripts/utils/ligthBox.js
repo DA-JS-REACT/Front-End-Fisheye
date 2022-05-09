@@ -9,7 +9,7 @@ class LigthBox {
         const link = document.querySelectorAll('.card-link');
         link.forEach((img) => img.addEventListener('click',this.launchLigthBox));
         link.forEach((img) => img.addEventListener('click',(evt) => {
-            this.test(evt,photographer,media,divImg);
+            this.handleSliderClick(evt,photographer,media,divImg);
 
         } ));
 
@@ -28,26 +28,93 @@ class LigthBox {
         const modal = document.getElementById('ligthbox');
         modal.style.display = 'none';
     }
-    test(evt,photographer,media,divImg){
+
+    /**
+     *
+     * @param {event} evt
+     * @param {array} photographer
+     * @param {array} media
+     * @param {HtmlElement} divImg
+     */
+    handleSliderClick(evt,photographer,media,divImg){
 
         const element = evt.currentTarget;
 
-        const next = element.nextElementSibling;
-        const idElement = next.querySelector('.counter');
+
+        const nextElement = element.nextElementSibling;
+        const idElement = nextElement.querySelector('.counter');
+        // retrieves id from the element
         const id = parseInt(idElement.getAttribute('id'));
-        const  index  = media.findIndex((element) => element.id === id);
-        console.log(index);
+        // retrieves current index from the element with id
+        let  index  = media.findIndex((element) => element.id === id);
 
         this.typeOfMedia(photographer,media[index],divImg);
+        const toto = divImg.closest('.slide');
+        const prev = toto.querySelector('.previous');
+        const next = toto.querySelector('.next');
+
+        prev.addEventListener('click',() => {
+
+            const numberOfSlides = media.length;
+
+            if ( index <= numberOfSlides - 1 && index > 0 ){
+                index --;
+            }
+            else {
+                index = numberOfSlides -1 ;
+            }
+            this.typeOfMedia(photographer,media[index],divImg);
+
+
+        });
+        next.addEventListener('click',() => {
+
+            //this.next(index,media,photographer,divImg);
+            const numberOfSlides = media.length;
+
+            if ( index < numberOfSlides -1 ){
+                index ++;
+            }else {
+                index = 0;
+            }
+            this.typeOfMedia(photographer,media[index],divImg);
+
+        });
 
 
     }
+    /**
+     *
+     * @param {number} index
+     * @param {array} media
+     * @param {array} photographer
+     * @param {HtmlElement} divImg
+     */
+    next(index,media,photographer,divImg) {
+        const numberOfSlides = media.length;
 
+        if ( index < numberOfSlides -1 ){
+            index ++;
+        }else {
+            index = 0;
+        }
+        this.typeOfMedia(photographer,media[index],divImg);
+
+    }
+
+
+    /**
+     *
+     * @param {array} photographer
+     * @param {array} media
+     * @param {HtmlElement} divImg
+     */
     typeOfMedia(photographer,media,divImg){
 
         const img = new MediaFactory(media, 'image').displayMedia(photographer,'img');
 
         const video = new MediaFactory(media, 'video').displayMedia(photographer,'video');
+        video.setAttribute('controls', '');
         if(media.video){
             if(divImg.hasChildNodes('img') || divImg.hasChildNodes('video')){
                 const old = divImg.firstChild;
@@ -65,8 +132,6 @@ class LigthBox {
 
 
         }
-        console.log(media);
-
 
     }
 
@@ -106,7 +171,7 @@ class LigthBox {
 
 
         const iElementPrev = document.createElement( 'i');
-        iElementPrev.classList.add('fa-solid', 'fa-chevron-left','fa-3x');
+        iElementPrev.classList.add('fa-solid', 'fa-chevron-left','fa-3x','previous');
         divPrev.appendChild(iElementPrev);
 
         //create button for close modal
@@ -115,7 +180,7 @@ class LigthBox {
         header.appendChild(closeElement);
 
         const iElementNext = document.createElement( 'i');
-        iElementNext.classList.add('fa-solid', 'fa-chevron-right','fa-3x','test');
+        iElementNext.classList.add('fa-solid', 'fa-chevron-right','fa-3x','next');
 
         divNext.appendChild(iElementNext);
 
