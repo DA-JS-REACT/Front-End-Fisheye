@@ -21,55 +21,68 @@ class LikesService {
         // cible l'élément cliquer
         const clickEvent = document.querySelectorAll('.likes-counter');
         let count = 0;
+        // let old = [];
+        // old.push(media);
+        // const newold = old.slice(0);
+        // console.log('old',old);
+        // console.log('newold',newold);
         clickEvent.forEach(btn => btn.addEventListener('click',(evt) => {
-            this.test(evt,media,count);
+            this.handleClickLikes(evt,media ,count);
         }));
 
     }
 
-    test(evt,media,count){
+    handleClickLikes(evt,media){
+
+
 
         const element = evt.currentTarget;
+        //this.stopCounters(element);
+        this.refreshLikes(media,element);
+
+    }
+
+
+    refreshLikes(media,element) {
+
         // cible l'élément qui affiche le nombre de likes en fonction du click;
         const nbrLikes = element.previousElementSibling;
         element.classList.toggle('active');
-        count++;
-        console.log(count);
-        //récupére l'id du media courant
-        const id = parseInt(nbrLikes.getAttribute('id'));
-        // récupére la valeur du nombre de likes
+
+        // récupére la valeur du nombre de likes sur l'élélment cliqué
         let value = parseInt(nbrLikes.textContent);
-        value  += count ;
-     
-        //réinjecte la valeur incrémenté
-        nbrLikes.textContent = value ;
-        this.refreshLikes(media,value,id);
-        //this.stopCounters(element, value,nbrLikes);
 
-    }
-
-
-    refreshLikes(media,value,id) {
-
-
-
-        const medias = media.find(Id => Id.id === id);
-
+        // récupére la valeur du nombre totla de likes dans le footer
         const footer = document.querySelector('.sum-likes');
         let valueFooter = parseInt(footer.textContent);
-        valueFooter += 1;
-        medias.likes = value;
+
+        if(element.classList.contains('active')){
+            value++;
+            valueFooter++;
+        }else {
+            value--;
+            valueFooter--;
+        }
+
+        //réinjecte la valeur incrémenté
+        nbrLikes.textContent = value;
         footer.textContent = valueFooter;
+
+
+        //récupére l'id du media courant
+        const id = parseInt(nbrLikes.getAttribute('id'));
+        const medias = media.find(Id => Id.id === id);
+
+        // met à jour le media
+        medias.likes = value;
 
     }
 
-    stopCounters(element,evt,value,nbrLikes) {
-        //const search = element.classList.contains('active') ? value += 1 : value = 1;
-       
+    stopCounters(element) {
         element.removeEventListener('click',(evt) => {
-            this.test(evt);
-        },false);
-   
+            this.handleClickLikes(evt);
+        },true);
+
     }
 
 

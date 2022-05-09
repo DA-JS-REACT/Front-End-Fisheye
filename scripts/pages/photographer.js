@@ -92,19 +92,6 @@ class PagePhotographer {
         this.getFooterPage(photographer,resultMedia);
         this.likes.countLikes(resultMedia);
 
-        // this.ligthBox.displayLigthBox(photographer,resultMedia);
-        console.log('controller',resultMedia);
-        const  index  = resultMedia.findIndex((element) => element.title === 'Climber');
-        console.log(index);
-        // const isLargeNumber = resultMedia.map((element) => {
-
-        //     if( element.title === 'Climber'){
-               
-        //         console.log('yes',resultMedia.indexOf(element.title));
-        //     }
-
-        // });
-    
         const divImg = document.querySelector('.slide__img');
         this.ligthBox.initializeModal(photographer,resultMedia,divImg);
 

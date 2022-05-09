@@ -13,18 +13,14 @@ class PhotographerHomeFactory {
 
     }
 
-    // constructor(pages,data) {
-    //     if( pages === 'home') {
-    //         return new PhotographerList(data);
-    //     }
-    // }
 
-
+    /**
+     *
+     * @returns  {HtmlElement}
+     */
     getUserCardDOM() {
 
-        // if( this.pages === 'home') {
-        //     return new PhotographerList(this.data).DisplayHomePage();
-        // }
+
         const picture = `./assets/photographers/${this.portrait}`;
 
         const article = document.createElement( 'article' );
