@@ -29,14 +29,12 @@ class ArticleMedia {
         article.classList.add('article-picture');
         const link = document.createElement('a');
         link.classList.add('card-link');
-        const img = new MediaFactory(media, 'image').displayMedia(photographer,'img');
-        const video = new MediaFactory(media, 'video').displayMedia(photographer,'video');
 
-        if(media.video){
-            link.appendChild(video);
-        } else if (media.image){
-            link.appendChild(img);
-        }
+        // appel de mediaFactory pour la gestion des images ou video
+        const medias = new MediaFactory(media).displayMedia(photographer);
+
+        link.appendChild(medias);
+
 
         article.appendChild(link);
         const div = document.createElement('div');

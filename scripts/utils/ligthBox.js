@@ -111,26 +111,13 @@ class LigthBox {
      */
     typeOfMedia(photographer,media,divImg){
 
-        const img = new MediaFactory(media, 'image').displayMedia(photographer,'img');
+        const medias = new MediaFactory(media).displayMedia(photographer,{hasControl:true});
 
-        const video = new MediaFactory(media, 'video').displayMedia(photographer,'video');
-        video.setAttribute('controls', '');
-        if(media.video){
-            if(divImg.hasChildNodes('img') || divImg.hasChildNodes('video')){
-                const old = divImg.firstChild;
-                divImg.replaceChild(video,old);
-            }else {
-                divImg.appendChild(video);
-            }
-        } else if (media.image){
-            if(divImg.hasChildNodes('img') || divImg.hasChildNodes('video')){
-                const old = divImg.firstChild;
-                divImg.replaceChild(img,old);
-            }else {
-                divImg.appendChild(img);
-            }
-
-
+        if(divImg.hasChildNodes('img') || divImg.hasChildNodes('video')){
+            const old = divImg.firstChild;
+            divImg.replaceChild(medias,old);
+        }else {
+            divImg.appendChild(medias);
         }
 
     }

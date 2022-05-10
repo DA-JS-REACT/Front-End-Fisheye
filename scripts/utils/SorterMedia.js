@@ -2,6 +2,7 @@
 import { ArticleMedia } from '../templates/articleMedia.js';
 import{LikesService}  from '../utils/Likes.js';
 import {LigthBox} from '../utils/ligthBox.js';
+import {StateLikes} from '../models/StateLikes.js';
 
 
 
@@ -48,8 +49,9 @@ class SorterMedia {
             this.likes.countLikes(media);
             const divImg = document.querySelector('.slide__img');
             this.ligthBox.initializeModal(photographer,media,divImg);
+
         });
-        
+
     }
 
     /**

@@ -6,7 +6,7 @@ class ImageFactory {
     }
 
 
-    displayMedia(photographer,name){
+    displayMedia(photographer){
 
         // Recupére le nom du photographe pour contruire le chemin
         const pattern = /\s*(-| )\s*/;
@@ -16,7 +16,7 @@ class ImageFactory {
 
 
         const img = document.createElement('img');
-        img.classList.add('card-link__media','card-link__media--'+ name);
+        img.classList.add('card-link__media','card-link__media--img');
         img.setAttribute('src', picture + this.media.image);
         img.setAttribute('alt', this.media.title);
 

@@ -161,7 +161,7 @@ class PagePhotographer {
     }
 
     checkUrl(){
-        //TODO check id get with regex pattern
+
         const pattern = /^\d+$/gm;
         const path = /^[?](id)[=]\d+$/gm;
 

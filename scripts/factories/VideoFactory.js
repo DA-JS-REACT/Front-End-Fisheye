@@ -4,8 +4,13 @@ class VideoFactory {
         this.media = media;
     }
 
-
-    displayMedia(photographer,name){
+    /**
+     * 
+     * @param {array} photographer 
+     * @param {object} options 
+     * @returns
+     */
+    displayMedia(photographer,options={}){
 
         // Recupére le nom du photographe pour contruire le chemin
         const pattern = /\s*(-| )\s*/;
@@ -15,9 +20,12 @@ class VideoFactory {
 
 
         const video = document.createElement('video');
-        video.classList.add('card-link__media', 'card-link__media--' + name);
+        video.classList.add('card-link__media', 'card-link__media--video' );
         video.setAttribute('src', picture + this.media.video);
-        // video.setAttribute('controls', '');
+        // add options for video in lightBox
+        if(options.hasControl) {
+            video.setAttribute('controls', '');
+        }
 
 
         return video;

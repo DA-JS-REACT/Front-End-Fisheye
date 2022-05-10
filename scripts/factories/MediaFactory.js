@@ -5,10 +5,10 @@ import{VideoFactory} from '../factories/VideoFactory.js';
 
 class MediaFactory {
 
-    constructor(media,type) {
-        if (type === 'image') {
+    constructor(media) {
+        if (media.image) {
             return new ImageFactory(media);
-        } else if (type === 'video') {
+        } else if (media.video) {
             return new VideoFactory(media);
         }
     }

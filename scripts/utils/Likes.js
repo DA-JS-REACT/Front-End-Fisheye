@@ -1,11 +1,8 @@
-import { MediaFactory } from '../factories/MediaFactory.js';
-
+import {StateLikes} from '../models/StateLikes.js';
 class LikesService {
-
-    constructor() {
-        this.media = new MediaFactory(
-            this.likes
-        );
+    constructor(){
+        this.state = new StateLikes();
+        this.test = new Map();
     }
 
     sumLikes(media) {
@@ -20,14 +17,8 @@ class LikesService {
     countLikes(media){
         // cible l'élément cliquer
         const clickEvent = document.querySelectorAll('.likes-counter');
-        let count = 0;
-        // let old = [];
-        // old.push(media);
-        // const newold = old.slice(0);
-        // console.log('old',old);
-        // console.log('newold',newold);
         clickEvent.forEach(btn => btn.addEventListener('click',(evt) => {
-            this.handleClickLikes(evt,media ,count);
+            this.handleClickLikes(evt,media);
         }));
 
     }
@@ -37,7 +28,7 @@ class LikesService {
 
 
         const element = evt.currentTarget;
-        //this.stopCounters(element);
+        
         this.refreshLikes(media,element);
 
     }
@@ -56,32 +47,58 @@ class LikesService {
         const footer = document.querySelector('.sum-likes');
         let valueFooter = parseInt(footer.textContent);
 
+        //récupére l'id du media courant
+        const id = parseInt(nbrLikes.getAttribute('id'));
+        const medias = media.find(Id => Id.id === id);
+        this.state.id = id;
+        this.state.check = true;
+
+
+
         if(element.classList.contains('active')){
             value++;
             valueFooter++;
+
         }else {
             value--;
             valueFooter--;
         }
 
-        //réinjecte la valeur incrémenté
-        nbrLikes.textContent = value;
-        footer.textContent = valueFooter;
 
 
-        //récupére l'id du media courant
-        const id = parseInt(nbrLikes.getAttribute('id'));
-        const medias = media.find(Id => Id.id === id);
+        // //réinjecte la valeur incrémenté
+        // nbrLikes.textContent = value;
+        // footer.textContent = valueFooter;
+
+
+
 
         // met à jour le media
         medias.likes = value;
 
+        this.tab(nbrLikes,footer,value,valueFooter,medias);
+
+
     }
 
-    stopCounters(element) {
-        element.removeEventListener('click',(evt) => {
-            this.handleClickLikes(evt);
-        },true);
+    tab(nbrLikes,footer,value,valueFooter,medias) {
+
+        const toto = this.test.set(this.state.id,[this.state.check,medias.likes]);
+        if(toto.get(this.state.id)){
+
+            for (const value of toto.values()) {
+                console.log(value[1]);
+                //réinjecte la valeur incrémenté
+                nbrLikes.textContent = value[1];
+                footer.textContent = valueFooter;
+            }
+         
+           
+
+        }
+   
+        console.log(toto);
+        return toto;
 
     }
 
