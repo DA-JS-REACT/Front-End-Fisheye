@@ -2,14 +2,14 @@
 import { ArticleMedia } from '../templates/articleMedia.js';
 import{LikesService}  from '../utils/Likes.js';
 import {LigthBox} from '../utils/ligthBox.js';
-import {StateLikes} from '../models/StateLikes.js';
+
 
 
 
 class SorterMedia {
 
     constructor() {
-        this.likes = new LikesService();
+        this.likes = new LikesService({hasData:true});
         this.ligthBox = new LigthBox();
     }
 
@@ -20,7 +20,6 @@ class SorterMedia {
      * @param {number} id
      */
     ChangeDisplayMedia(media,photographers,id) {
-
         const select = document.querySelector('.select-sort');
         select.addEventListener('change', event => {
             const inputValue = event.target.value;
@@ -45,13 +44,14 @@ class SorterMedia {
                 // injecte le nouveau selon le tri
                 div.appendChild(photographPicture);
                 //
+
             });
             this.likes.countLikes(media);
+            this.likes.dataCashingLikes();
             const divImg = document.querySelector('.slide__img');
             this.ligthBox.initializeModal(photographer,media,divImg);
 
         });
-
     }
 
     /**
@@ -76,7 +76,9 @@ class SorterMedia {
         });
         return result;
     }
-
+    display(media){
+        this.likes.countLikes(media);
+    }
 }
 
 export {SorterMedia};

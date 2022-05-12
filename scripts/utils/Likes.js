@@ -1,10 +1,17 @@
 import {StateLikes} from '../models/StateLikes.js';
+
 class LikesService {
     constructor(){
+        // cashing in the  a new class
         this.state = new StateLikes();
-        this.test = new Map();
-    }
+        this.cashing= new Map();
 
+    }
+    /**
+     *
+     * @param {array} media
+     * @returns {number}
+     */
     sumLikes(media) {
         let sum = 0;
         media.forEach(likes => {
@@ -13,9 +20,12 @@ class LikesService {
         });
         return sum;
     }
-
+    /**
+     *
+     * @param {array} media
+     */
     countLikes(media){
-        // cible l'élément cliquer
+        //  targets the clicked element
         const clickEvent = document.querySelectorAll('.likes-counter');
         clickEvent.forEach(btn => btn.addEventListener('click',(evt) => {
             this.handleClickLikes(evt,media);
@@ -25,80 +35,81 @@ class LikesService {
 
     handleClickLikes(evt,media){
 
-
-
         const element = evt.currentTarget;
-        
         this.refreshLikes(media,element);
 
     }
 
-
+    /**
+     *
+     * @param {array} media
+     * @param {HtmlElement} element
+     */
     refreshLikes(media,element) {
 
-        // cible l'élément qui affiche le nombre de likes en fonction du click;
+        // targets the element that displays the number of likes based on the click
         const nbrLikes = element.previousElementSibling;
         element.classList.toggle('active');
 
-        // récupére la valeur du nombre de likes sur l'élélment cliqué
+
+        // get the value of the  number of likes in clicked élément
         let value = parseInt(nbrLikes.textContent);
 
-        // récupére la valeur du nombre totla de likes dans le footer
+        // get the value of the total number of likes in the footer
         const footer = document.querySelector('.sum-likes');
         let valueFooter = parseInt(footer.textContent);
 
-        //récupére l'id du media courant
+        //get the id of the current element
         const id = parseInt(nbrLikes.getAttribute('id'));
         const medias = media.find(Id => Id.id === id);
+        //  save id
         this.state.id = id;
-        this.state.check = true;
+
+
 
 
 
         if(element.classList.contains('active')){
             value++;
             valueFooter++;
+            this.state.check = true;
 
         }else {
             value--;
             valueFooter--;
         }
+        this.state.value = value;
 
 
 
-        // //réinjecte la valeur incrémenté
-        // nbrLikes.textContent = value;
-        // footer.textContent = valueFooter;
-
-
-
-
-        // met à jour le media
-        medias.likes = value;
-
-        this.tab(nbrLikes,footer,value,valueFooter,medias);
-
+        //reinject the incremented value
+        nbrLikes.textContent = this.state.value;
+        footer.textContent = valueFooter;
+        // updates  the media
+        medias.likes = this.state.value;
 
     }
+    /**
+     *
+     * @returns {array}
+     */
+    dataCashingLikes() {
+        // tab with Map
+        const cashId = this.cashing.set(this.state.id,this.state.check);
 
-    tab(nbrLikes,footer,value,valueFooter,medias) {
+        if (cashId.get(this.state.id)){
+            // targets the clicked element
+            const currentElement = document.getElementById(this.state.id);
+            // add  class active for memory
+            const beforeElement = currentElement.nextElementSibling;
+            beforeElement.classList.add('active');
+            this.state.check = false;
+            return cashId;
 
-        const toto = this.test.set(this.state.id,[this.state.check,medias.likes]);
-        if(toto.get(this.state.id)){
 
-            for (const value of toto.values()) {
-                console.log(value[1]);
-                //réinjecte la valeur incrémenté
-                nbrLikes.textContent = value[1];
-                footer.textContent = valueFooter;
-            }
-         
-           
-
+        } else {
+            return cashId;
         }
-   
-        console.log(toto);
-        return toto;
 
     }
 
