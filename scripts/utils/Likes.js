@@ -5,6 +5,7 @@ class LikesService {
         // cashing in the  a new class
         this.state = new StateLikes();
         this.cashing= new Map();
+        this.cashId = this.cashing.set(this.state.id,this.state.check);
 
     }
     /**
@@ -77,6 +78,7 @@ class LikesService {
         }else {
             value--;
             valueFooter--;
+            this.state.check = false;
         }
         this.state.value = value;
 
@@ -87,28 +89,27 @@ class LikesService {
         footer.textContent = valueFooter;
         // updates  the media
         medias.likes = this.state.value;
-
+        // tab with Map
+        this.cashId = this.cashing.set(this.state.id,this.state.check);
     }
     /**
      *
      * @returns {array}
      */
     dataCashingLikes() {
-        // tab with Map
-        const cashId = this.cashing.set(this.state.id,this.state.check);
 
-        if (cashId.get(this.state.id)){
-            // targets the clicked element
-            const currentElement = document.getElementById(this.state.id);
-            // add  class active for memory
-            const beforeElement = currentElement.nextElementSibling;
-            beforeElement.classList.add('active');
-            this.state.check = false;
-            return cashId;
+        for (const [id,value] of this.cashId) {
 
+            if(id){
+                if(value === true) {
+                    // targets the clicked element
+                    const currentElement = document.getElementById(id);
+                    // add  class active for memory
+                    const beforeElement = currentElement.nextElementSibling;
+                    beforeElement.classList.add('active');
+                }
+            }
 
-        } else {
-            return cashId;
         }
 
     }

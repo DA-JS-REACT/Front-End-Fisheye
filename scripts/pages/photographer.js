@@ -90,7 +90,8 @@ class PagePhotographer {
         });
 
         this.getFooterPage(photographer,resultMedia);
-        //this.likes.countLikes(resultMedia);
+        // this.likes.countLikes(resultMedia);
+        
         const divImg = document.querySelector('.slide__img');
         this.ligthBox.initializeModal(photographer,resultMedia,divImg);
 
@@ -183,6 +184,7 @@ class PagePhotographer {
         this.displayOnePhotographer(photographers,this.checkUrl());
         this.displayMedia(media,this.checkUrl(),photographers);
         this.Sort.display(media);
+        // this.likes.dataCashingLikes();
       
 
     }
