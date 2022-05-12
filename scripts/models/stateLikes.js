@@ -1,7 +1,7 @@
 class StateLikes {
-    constructor(id ='',check = false,value= ''){
+    constructor(id ='',status = false,value= ''){
         this._id = id;
-        this._check = check;
+        this._status = status;
         this._value = value;
     }
 
@@ -9,15 +9,15 @@ class StateLikes {
         return this._id;
     }
 
-    get check() {
-        return this._check;
+    get status() {
+        return this._status;
     }
     get value() {
         return this._value;
     }
 
-    set check(check) {
-        this._check = check;
+    set status(status) {
+        this._status = status;
     }
 
     set id(id) {

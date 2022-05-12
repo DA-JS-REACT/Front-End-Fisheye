@@ -5,7 +5,7 @@ class LikesService {
         // cashing in the  a new class
         this.state = new StateLikes();
         this.cashing= new Map();
-        this.cashId = this.cashing.set(this.state.id,this.state.check);
+        this.cashId = this.cashing.set(this.state.id,this.state.status);
 
     }
     /**
@@ -73,12 +73,12 @@ class LikesService {
         if(element.classList.contains('active')){
             value++;
             valueFooter++;
-            this.state.check = true;
+            this.state.status = true;
 
         }else {
             value--;
             valueFooter--;
-            this.state.check = false;
+            this.state.status = false;
         }
         this.state.value = value;
 
@@ -90,7 +90,7 @@ class LikesService {
         // updates  the media
         medias.likes = this.state.value;
         // tab with Map
-        this.cashId = this.cashing.set(this.state.id,this.state.check);
+        this.cashId = this.cashing.set(this.state.id,this.state.status);
     }
     /**
      *
