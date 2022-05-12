@@ -7,15 +7,40 @@ class SortFactory {
     getSelectSort (){
         const form = document.createElement('form');
         form.classList.add('photograph-sort');
-        const select = ` <label class="label-sort" for="picture-select">Trier par </label>
+        form.setAttribute('role','sorter');
 
-            <select class="select-sort" name="picture" id="picture-select">
-                <option class="option-sort" value="popular">Popularité</option>
-                <option class="option-sort" value="date">Date</option>
-                <option  class="option-sort" value="title">Titre</option>
-            </select>
-        `;
-        form.innerHTML = select;
+        const label = document.createElement('label');
+        label.classList.add('label-sort');
+        label.setAttribute('for','picture-select');
+        label.textContent = 'Trier par';
+
+        form.appendChild(label);
+
+        const select = document.createElement('select');
+        select.classList.add('select-sort');
+        select.setAttribute('name','picture');
+        select.setAttribute('id','picture-select');
+
+        const option = document.createElement('option');
+        option.setAttribute('value','popular');
+        option.classList.add('option-sort');
+        option.textContent = 'Popularité';
+        select.appendChild(option);
+
+        const option1 = document.createElement('option');
+        option1.setAttribute('value','date');
+        option1.classList.add('option-sort');
+        option1.textContent = 'Date';
+        select.appendChild(option1);
+
+        const option2 = document.createElement('option');
+        option2.setAttribute('value','title');
+        option2.classList.add('option-sort');
+        option2.textContent = 'Titre';
+        select.appendChild(option2);
+
+        form.appendChild(select);
+
         return form;
     }
 

@@ -127,6 +127,7 @@ class PagePhotographer {
     getFooterPage(photographer,media) {
         const footer = document.createElement('footer');
         footer.classList.add('photograph-footer');
+        footer.setAttribute('role', 'photographerInfo');
 
         const ulElement = document.createElement('ul');
         ulElement.classList.add('footer-list');

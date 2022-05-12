@@ -9,7 +9,7 @@ import {LigthBox} from '../utils/ligthBox.js';
 class SorterMedia {
 
     constructor() {
-        this.likes = new LikesService({hasData:true});
+        this.likes = new LikesService();
         this.ligthBox = new LigthBox();
     }
 
