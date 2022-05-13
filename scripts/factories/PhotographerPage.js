@@ -26,7 +26,7 @@ class PhotographerPageFactory {
             <p class="photograph-content__tagline ">  ${this.tagline}</p>
         `;
         const photographImgHeader =`
-                <img class="photograph-img__img" src="./assets/photographers/${this.portrait}">
+                <img class="photograph-img__img" src="./assets/photographers/${this.portrait}" alt="${this.name}">
             `;
         divContent.innerHTML = photographCardHeader;
 

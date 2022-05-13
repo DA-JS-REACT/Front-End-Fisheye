@@ -28,12 +28,13 @@ class PhotographerHomeFactory {
 
         const link = document.createElement( 'a');
         link.setAttribute( 'href', 'photographer.html?id='+ this.id);
+        link.setAttribute( 'aria-label', 'lien vers la page d\'un photographe');
         link.classList.add('article__link');
 
         const img = document.createElement( 'img' );
         img.classList.add('article__img');
         img.setAttribute('src', picture);
-        img.setAttribute('alt', this.name);
+        img.setAttribute('alt', this.name + '- page photographe');
 
         const h2 = document.createElement( 'h2' );
         h2.classList.add('article__title');

@@ -106,6 +106,7 @@
                 padding-right: 1px;
                 font-size:16px;
                 cursor: pointer;
+                @include effect-modal;
             }
             .active {
                 color:$colorSecondary;

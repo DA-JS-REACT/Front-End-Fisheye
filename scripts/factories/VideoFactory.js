@@ -22,6 +22,7 @@ class VideoFactory {
         const video = document.createElement('video');
         video.classList.add('card-link__media', 'card-link__media--video' );
         video.setAttribute('src', picture + this.media.video);
+        video.setAttribute('type', 'video/mp4');
         // add options for video in lightBox
         if(options.hasControl) {
             video.setAttribute('controls', '');

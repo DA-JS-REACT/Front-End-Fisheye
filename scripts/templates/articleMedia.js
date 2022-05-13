@@ -53,7 +53,11 @@ class ArticleMedia {
 
         const i = document.createElement( 'i');
         i.classList.add('fa-solid', 'fa-heart','likes-counter');
+        const spanScrennreader = document.createElement('span');
+        spanScrennreader.classList.add('sr-only');
+        spanScrennreader.textContent ='Coeur permettant d\'ajouter ou de retirer un like';
         p.appendChild(i);
+        p.appendChild(spanScrennreader);
 
         div.appendChild(p);
 
