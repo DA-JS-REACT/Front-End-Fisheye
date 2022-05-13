@@ -26,21 +26,22 @@
           <img class="close" src="assets/icons/close.svg"  alt="cross for close" aria-label="Close contact form"/>
         </header>
 				<form class="form-contact" action="index.html" method="get" novalidate >
-          <div class="formData">
-            <label for="first">Prénom</label>
-            <input class="text-control" type="text"  id="first" name="first" minlength="2" />
+          <div class="formData" aria-labelledby="firstName">
+            <label for="firstName">Prénom :</label>
+            <input class="text-control" type="text"  id="firstName" name="first" minlength="2" placeholder="ex : frederic" aria-required="true" aria-invalid="false"/>
           </div>
-          <div  class="formData">
-            <label for="last">Nom</label><br>
-            <input  class="text-control"  type="text" id="last" name="last"  />
+          <div  class="formData" aria-labelledby="lastName">
+            <label for="lastName">Nom :</label><br>
+            <input  class="text-control"  type="text" id="lastName" name="last" minlength="2" placeholder="ex : Dupont" aria-required="true" aria-invalid="false"/>
           </div>
-          <div  class="formData">
-            <label for="email">E-mail</label>
-            <input  class="text-control"  type="email"  id="email"  name="email"  />
+          <div  class="formData" aria-labelledby="email">
+            <label for="email">E-mail :</label>
+            <input  class="text-control"  type="email"  id="email"  name="email" placeholder="exemple@gmail.com"  aria-describedby="email-format"  aria-required="true" aria-invalid="false"/>
+            <!-- <span id="email-format" class="hidden">exemple@gmail.com</span> -->
           </div>
-          <div  class="formData">
-            <label for="message">Votre message</label>
-            <textarea class="text-control"   id="message"  name="message" placeholder="votre message ici"></textarea>
+          <div  class="formData" aria-labelledby="message">
+            <label for="message">Votre message :</label>
+            <textarea class="text-control"   id="message"  name="message" minlength="10" placeholder="votre message ici" aria-required="true" aria-invalid="false"></textarea>
           </div>
           <button type="submit" class="contact_submit">Envoyer</button>
 				</form>

@@ -12,6 +12,7 @@ class SortFactory {
         const label = document.createElement('label');
         label.classList.add('label-sort');
         label.setAttribute('for','picture-select');
+        label.setAttribute('id','sort');
         label.textContent = 'Trier par';
 
         form.appendChild(label);
@@ -20,6 +21,7 @@ class SortFactory {
         select.classList.add('select-sort');
         select.setAttribute('name','picture');
         select.setAttribute('id','picture-select');
+        select.setAttribute('aria-describedby','sort');
 
         const option = document.createElement('option');
         option.setAttribute('value','popular');

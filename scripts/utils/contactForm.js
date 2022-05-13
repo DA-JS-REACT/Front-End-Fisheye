@@ -48,8 +48,8 @@ const ModalForm = {
         }
     },
     checkField : function (){
-        ModalForm.checkfieldInputText('first','il faut au minimun 2 caractères',2);
-        ModalForm.checkfieldInputText('last','il faut au minimun 2 caractères',2);
+        ModalForm.checkfieldInputText('firstName','il faut au minimun 2 caractères',2);
+        ModalForm.checkfieldInputText('lastName','il faut au minimun 2 caractères',2);
         ModalForm.checkfieldInputEmail('email','ce n\'est pas un bon format ');
         ModalForm.checkfieldInputText('message','le message est trop court',10);
     },
@@ -57,12 +57,16 @@ const ModalForm = {
 
     checkIsValid : function(spanElement,texterror,isInvalid)
     {
-
+        const inputElement = spanElement.previousElementSibling;
         if (isInvalid){
+            inputElement.setAttribute('aria-invalid','true');
+            inputElement.style.border = '2px solid red';
             spanElement.textContent = texterror;
             spanElement.classList.add('data-error');
             ModalForm.success = false;
         }else {
+            inputElement.setAttribute('aria-invalid','false');
+            inputElement.style.border = '2px solid white';
             spanElement.textContent = '';
             spanElement.classList.remove('data-error');
             ModalForm.success = true;
@@ -83,14 +87,13 @@ const ModalForm = {
 
     checkfieldInputEmail: function(fieldId,texterror)
     {
-    // on récupère l'élément  qui nous interesse
+        // on récupère l'élément  qui nous interesse
         const inputElement = document.getElementById(fieldId);
-
         // condition pour être valide
         let pattern = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/;
-        const isInvalid = !pattern.test(inputElement.value.trim());
+        const isInvalid = !pattern.test(inputElement.value.trim()) || inputElement.value.trim() === '';
         const spanElement = inputElement.nextElementSibling;
-        ModalForm.checkIsValid(spanElement,texterror,isInvalid,fieldId);
+        ModalForm.checkIsValid(spanElement,texterror,isInvalid);
 
     },
 };
