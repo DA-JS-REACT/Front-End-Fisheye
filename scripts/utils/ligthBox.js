@@ -22,11 +22,13 @@ class LigthBox {
     launchLigthBox() {
         const modal = document.getElementById('ligthbox');
         modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
     }
 
     closeLigthBox() {
         const modal = document.getElementById('ligthbox');
         modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
     }
 
     /**
@@ -126,6 +128,14 @@ class LigthBox {
         const bodyElement = document.querySelector('body');
         const modal = document.createElement('div');
         modal.setAttribute('id', 'ligthbox');
+        modal.setAttribute('aria-hidden', 'true');
+        modal.setAttribute('aria-describedby','modalLighbox');
+
+        const title = document.createElement('title');
+        title.classList.add('sr-only');
+        title.setAttribute('id', 'modalLighbox');
+        title.textContent ='Carousel des images et video du photographe';
+        modal.appendChild(title);
 
         //create container element
         const div = document.createElement('div');
