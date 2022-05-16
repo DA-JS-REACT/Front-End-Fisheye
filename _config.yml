@@ -1,6 +1,6 @@
 lsi: false
 safe: true
-source: ./public
+source: [./public]
 incremental: false
 highlighter: rouge
 gist:
