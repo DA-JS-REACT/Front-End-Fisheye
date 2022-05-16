@@ -13,6 +13,7 @@ const ModalForm = {
         const form = document.querySelector('.form-contact');
 
         form.addEventListener('submit', ModalForm.handleSubmit);
+        form.addEventListener('change', ModalForm.handleChange);
         ModalForm.displayFieldError(form);
 
     },
@@ -48,6 +49,10 @@ const ModalForm = {
             textareaElement.value = '';
             ModalForm.closeModal();
         }
+    },
+    handleChange : function (event) {
+        event.preventDefault();
+        ModalForm.checkField();
     },
     checkField : function (){
         ModalForm.checkfieldInputText('firstName','il faut au minimun 2 caractères',2);
