@@ -26,14 +26,22 @@ const ModalForm = {
 
     displayModal: function () {
         const modal = document.getElementById('contact_modal');
+        const main = document.getElementById('main');
+        const footer = document.querySelector('.photograph-footer');
         modal.style.display = 'block';
         modal.setAttribute('aria-hidden', 'false');
+        main.setAttribute('aria-hidden', 'true');
+        footer.setAttribute('aria-hidden', 'true');
     },
 
     closeModal: function() {
         const modal = document.getElementById('contact_modal');
+        const main = document.getElementById('main');
+        const footer = document.querySelector('.photograph-footer');
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
+        main.setAttribute('aria-hidden', 'flase');
+        footer.setAttribute('aria-hidden', 'false');
     },
 
     handleSubmit: function(event) {

@@ -140,6 +140,11 @@ class PagePhotographer {
 
         const sum = this.likes.sumLikes(media);
         span.textContent = sum;
+        // for screen Reader
+        const smallInfoLike = document.createElement('small');
+        smallInfoLike.textContent = 'nombre de likes au total';
+        smallInfoLike.classList.add('sr-only');
+        span.appendChild(smallInfoLike);
         const i = document.createElement( 'i');
         i.classList.add('fa-solid', 'fa-heart');
         listFirst.appendChild(i);

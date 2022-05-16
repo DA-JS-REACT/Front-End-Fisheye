@@ -49,11 +49,16 @@ class ArticleMedia {
         span.classList.add('counter');
         span.setAttribute('id', this.id);
         span.textContent = this.likes;
+        const small = document.createElement('small');
+        small.textContent = 'nombre de likes';
+
+        small.classList.add('sr-only');
+        span.appendChild(small);
         p.appendChild(span);
 
         const i = document.createElement( 'i');
         i.classList.add('fa-solid', 'fa-heart','likes-counter');
-        i.setAttribute('aria-label','Coeur permettant d\'ajouter ou de retirer un like');
+        i.setAttribute('role','button');
         const spanScrennreader = document.createElement('span');
         spanScrennreader.classList.add('sr-only');
         spanScrennreader.setAttribute('id', 'like');

@@ -21,14 +21,22 @@ class LigthBox {
 
     launchLigthBox() {
         const modal = document.getElementById('ligthbox');
+        const main = document.getElementById('main');
+        const footer = document.querySelector('.photograph-footer');
         modal.style.display = 'block';
         modal.setAttribute('aria-hidden', 'false');
+        main.setAttribute('aria-hidden', 'true');
+        footer.setAttribute('aria-hidden', 'true');
     }
 
     closeLigthBox() {
         const modal = document.getElementById('ligthbox');
+        const main = document.getElementById('main');
+        const footer = document.querySelector('.photograph-footer');
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
+        main.setAttribute('aria-hidden', 'flase');
+        footer.setAttribute('aria-hidden', 'false');
     }
 
     /**
@@ -51,12 +59,13 @@ class LigthBox {
         let  index  = media.findIndex((element) => element.id === id);
 
         this.typeOfMedia(photographer,media[index],divImg);
-        const toto = divImg.closest('.slide');
-        const prev = toto.querySelector('.previous');
-        const next = toto.querySelector('.next');
+        // retrieves parent element
+        const parentElement = divImg.closest('.slide');
+        const prev = parentElement.querySelector('.previous');
+        const next = parentElement.querySelector('.next');
 
         prev.addEventListener('click',() => {
-
+            // count number of media
             const numberOfSlides = media.length;
 
             if ( index <= numberOfSlides - 1 && index > 0 ){
@@ -71,7 +80,6 @@ class LigthBox {
         });
         next.addEventListener('click',() => {
 
-            //this.next(index,media,photographer,divImg);
             const numberOfSlides = media.length;
 
             if ( index < numberOfSlides -1 ){
@@ -130,6 +138,7 @@ class LigthBox {
         modal.setAttribute('id', 'ligthbox');
         modal.setAttribute('aria-hidden', 'true');
         modal.setAttribute('aria-describedby','modalLighbox');
+        modal.setAttribute('role', 'dialog');
 
         const title = document.createElement('title');
         title.classList.add('sr-only');
@@ -170,6 +179,10 @@ class LigthBox {
         const iElementPrev = document.createElement( 'i');
         iElementPrev.classList.add('fa-solid', 'fa-chevron-left','fa-3x','previous');
         divPrev.appendChild(iElementPrev);
+        const spanPrev = document.createElement('span');
+        spanPrev.classList.add('sr-only');
+        spanPrev.textContent ='previous';
+        divPrev.appendChild(spanPrev);
 
         //create button for close modal
         const closeElement = document.createElement('i');
@@ -178,8 +191,11 @@ class LigthBox {
 
         const iElementNext = document.createElement( 'i');
         iElementNext.classList.add('fa-solid', 'fa-chevron-right','fa-3x','next');
-
         divNext.appendChild(iElementNext);
+        const spanNext = document.createElement('span');
+        spanNext.classList.add('sr-only');
+        spanNext.textContent ='next';
+        divPrev.appendChild(spanNext);
 
         modal.appendChild(div);
         bodyElement.appendChild(modal);
