@@ -29,6 +29,12 @@
     @include effect-btn;
 }
 
+@mixin btn-modal {
+    background: transparent;
+    border: none;
+    @include effect-modal;
+}
+
 @mixin effect-btn {
     &:hover{
         transform: translateY(3px);

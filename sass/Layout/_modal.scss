@@ -36,13 +36,16 @@
     i {
         color: $colorPrimary;
         cursor:pointer;
-        @include effect-modal;
+       
     }
     &__header {
         width: 100%;
         display: flex;
         justify-content: flex-end;
         align-items:baseline;
+        .close-ligthbox{
+            @include btn-modal;
+        }
     }
     &__slider {
         width: 100%;
@@ -83,10 +86,13 @@
 
             }
         }
-        i{
+        .next,
+        .previous {
             position: relative;
             top: -50px;
+            @include btn-modal;
         }
+
     }
 
 }

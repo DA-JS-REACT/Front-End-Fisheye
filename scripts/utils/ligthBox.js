@@ -137,8 +137,10 @@ class LigthBox {
         const modal = document.createElement('div');
         modal.setAttribute('id', 'ligthbox');
         modal.setAttribute('aria-hidden', 'true');
-        modal.setAttribute('aria-describedby','modalLighbox');
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('aria-labelleby','modalLighbox');
         modal.setAttribute('role', 'dialog');
+        modal.setAttribute('tabindex', '-1');
 
         const title = document.createElement('title');
         title.classList.add('sr-only');
@@ -149,6 +151,7 @@ class LigthBox {
         //create container element
         const div = document.createElement('div');
         div.classList.add('modal-ligthbox');
+        div.setAttribute('role','document');
 
         const header = document.createElement('div');
         header.classList.add('modal-ligthbox__header');
@@ -175,27 +178,73 @@ class LigthBox {
         div.appendChild(header);
         div.appendChild(slider);
 
+        //create button for  previous
 
+        const buttonPrev = document.createElement('button');
+        buttonPrev.classList.add('previous');
+        buttonPrev.setAttribute('type', 'button');
+        buttonPrev.setAttribute('aria-label', 'previous');
+        buttonPrev.setAttribute('aria-describedby', 'previous-modal');
+        buttonPrev.setAttribute('title', 'previous');
         const iElementPrev = document.createElement( 'i');
-        iElementPrev.classList.add('fa-solid', 'fa-chevron-left','fa-3x','previous');
-        divPrev.appendChild(iElementPrev);
-        const spanPrev = document.createElement('span');
-        spanPrev.classList.add('sr-only');
-        spanPrev.textContent ='previous';
-        divPrev.appendChild(spanPrev);
+        iElementPrev.classList.add('fa-solid', 'fa-chevron-left','fa-4x');
+        iElementPrev.setAttribute('title', 'previous');
+
+        buttonPrev.appendChild( iElementPrev );
+        divPrev.appendChild(buttonPrev);
+      
+        const smallPrev = document.createElement('small');
+        smallPrev.classList.add('sr-only');
+        smallPrev.setAttribute('id','previous-modal');
+        smallPrev.textContent = 'Previous';
+
+
+        divPrev.appendChild(smallPrev);
 
         //create button for close modal
+        const buttonClose = document.createElement('button');
+        buttonClose.classList.add('close-ligthbox');
+        buttonClose.setAttribute('type', 'button');
+        buttonClose.setAttribute('aria-label', 'Close');
+        buttonClose.setAttribute('aria-describedby', 'close-modal');
+        buttonClose.setAttribute('title', 'Close');
+
+
         const closeElement = document.createElement('i');
-        closeElement.classList.add('fa-solid' ,'fa-xmark','fa-3x','close-ligthbox');
-        header.appendChild(closeElement);
+        closeElement.classList.add('fa-solid' ,'fa-xmark','fa-4x');
+
+        const smallClose = document.createElement('small');
+        smallClose.setAttribute('id','close-modal');
+        smallClose.textContent = 'fermer la modal';
+
+        smallClose.classList.add('sr-only');
+
+        buttonClose.appendChild(closeElement);
+        header.appendChild(buttonClose);
+        header.appendChild(smallClose);
+
+
+        //create button for  next
+
+        const buttonNext = document.createElement('button');
+        buttonNext.classList.add('next');
+
+        buttonNext.setAttribute('type', 'button');
+        buttonNext.setAttribute('aria-label', 'next');
+        buttonNext.setAttribute('aria-describedby', 'next-modal');
+        buttonNext.setAttribute('title', 'next');
 
         const iElementNext = document.createElement( 'i');
-        iElementNext.classList.add('fa-solid', 'fa-chevron-right','fa-3x','next');
-        divNext.appendChild(iElementNext);
-        const spanNext = document.createElement('span');
-        spanNext.classList.add('sr-only');
-        spanNext.textContent ='next';
-        divPrev.appendChild(spanNext);
+        iElementNext.classList.add('fa-solid', 'fa-chevron-right','fa-4x');
+        const smallNext = document.createElement('small');
+        smallNext.classList.add('sr-only');
+        smallNext.setAttribute('id','next-modal');
+        smallNext.textContent = 'next';
+
+
+        buttonNext.appendChild(iElementNext);
+        divNext.appendChild(buttonNext);
+        divNext.appendChild(smallNext);
 
         modal.appendChild(div);
         bodyElement.appendChild(modal);

@@ -29,6 +29,13 @@ class ArticleMedia {
         article.classList.add('article-picture');
         const link = document.createElement('a');
         link.classList.add('card-link');
+        link.setAttribute('href', '#');
+        link.setAttribute('tabindex','4');
+        link.setAttribute('role','button');
+        link.setAttribute('aria-haspopup','dialog');
+
+
+
 
         // appel de mediaFactory pour la gestion des images ou video
         const medias = new MediaFactory(media).displayMedia(photographer);

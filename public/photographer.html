@@ -10,13 +10,13 @@
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="./assets/images/logo.png" class="logo"  alt="Fisheye Home page" /></a>
+      <a tabindex="1" href="index.html"><img src="./assets/images/logo.png" class="logo"  alt="Fisheye Home page" /></a>
       <h1 class="sr-only">Page d'un photographe</h1>
     </header>
     <main id="main">
       <div class="photograph-header">
         <div class="photograph-button">
-            <button class="contact_button">Contactez-moi</button>
+            <button tabindex="2" class="contact_button">Contactez-moi</button>
         </div>
       </div>
     </main>
@@ -24,7 +24,7 @@
 			<div class="modal">
 				<header aria-label="banner contact form">
           <h2 id="modalContact" class="title-form">Contactez-moi<br><span class="title"></span></h2>
-          <img class="close" src="assets/icons/close.svg"  alt="cross for close" aria-label="Close contact form"/>
+          <img class="close" src="assets/icons/close.svg"  alt="cross for close" title="close" aria-label="Close contact form"/>
         </header>
 				<form class="form-contact" action="index.html" method="get" novalidate >
           <div class="formData" aria-labelledby="firstName">
@@ -44,7 +44,7 @@
             <label for="message">Votre message :</label>
             <textarea class="text-control"   id="message"  name="message" minlength="10" placeholder="votre message ici" aria-required="true" aria-invalid="false"></textarea>
           </div>
-          <button type="submit" class="contact_submit">Envoyer</button>
+          <button type="submit" title="envoyer" class="contact_submit">Envoyer</button>
 				</form>
 			</div>
 		</div>

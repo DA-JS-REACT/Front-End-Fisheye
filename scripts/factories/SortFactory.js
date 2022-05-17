@@ -22,6 +22,8 @@ class SortFactory {
         select.setAttribute('name','picture');
         select.setAttribute('id','picture-select');
         select.setAttribute('aria-describedby','sort');
+        select.setAttribute('tabindex','3');
+        
 
         const option = document.createElement('option');
         option.setAttribute('value','popular');
