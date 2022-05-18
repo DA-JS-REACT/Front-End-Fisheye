@@ -15,10 +15,14 @@ class LigthBox {
 
         const modalClose = document.querySelector('.close-ligthbox');
         modalClose.addEventListener('click', this.closeLigthBox);
+        const body = document.querySelector('body');
+        body.addEventListener('keydown', this.handleKeyBoard);
 
 
     }
-
+    handleKeyBoard(event) {
+        console.log(event);
+    }
     launchLigthBox() {
         const modal = document.getElementById('ligthbox');
         const main = document.getElementById('main');

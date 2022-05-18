@@ -24,6 +24,7 @@ class VideoFactory {
         video.setAttribute('src', picture + this.media.video);
         video.setAttribute('type', 'video/mp4');
         video.setAttribute('title','video : ' + this.media.title);
+        video.textContent='le format de la video  ' + this.media.title  + ' n\'est pas supporter par votre navigateur';
         // add options for video in lightBox
         if(options.hasControl) {
             video.setAttribute('controls', '');

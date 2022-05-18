@@ -1,3 +1,10 @@
+.modal {
+    .close {
+        @include btn-modal;
+    }
+}
+
+
 .form-contact {
     display: flex;
     width: 100%;
@@ -27,7 +34,7 @@
         .text-control:hover,
         .text-control:focus {
             border: 2px solid rgba(58, 58, 211, 0.801) ;
-           
+
         }
         .data-error {
             color: red;

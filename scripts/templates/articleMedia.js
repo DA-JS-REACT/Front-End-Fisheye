@@ -77,7 +77,7 @@ class ArticleMedia {
         spanScreenreader.textContent ='Coeur permettant d\'ajouter ou de retirer un like';
         buttonLikes.appendChild(i);
         p.appendChild(buttonLikes);
-       buttonLikes.appendChild(spanScreenreader);
+        buttonLikes.appendChild(spanScreenreader);
 
         div.appendChild(p);
 

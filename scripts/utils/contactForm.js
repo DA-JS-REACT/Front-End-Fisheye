@@ -9,6 +9,8 @@ const ModalForm = {
         modalLaunch.addEventListener('click', ModalForm.displayModal);
         const modalClose = document.querySelector('.close');
         modalClose.addEventListener('click', ModalForm.closeModal);
+        const body = document.querySelector('body');
+        body.addEventListener('keydown', ModalForm.handleKeyBoard);
 
         const form = document.querySelector('.form-contact');
 
@@ -43,7 +45,11 @@ const ModalForm = {
         main.setAttribute('aria-hidden', 'flase');
         footer.setAttribute('aria-hidden', 'false');
     },
-
+    /**
+     * For submit form
+     * @param {*} event 
+     * 
+     */
     handleSubmit: function(event) {
         event.preventDefault();
         ModalForm.checkField();
@@ -61,6 +67,21 @@ const ModalForm = {
     handleChange : function (event) {
         event.preventDefault();
         ModalForm.checkField();
+    },
+
+    handleKeyBoard : function (event) {
+        const modal = document.getElementById('contact_modal');
+        const main = document.getElementById('main');
+        const footer = document.querySelector('.photograph-footer');
+        if(event.keyCode === 27 && modal.getAttribute('aria-hidden','true')){
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            main.setAttribute('aria-hidden', 'flase');
+            footer.setAttribute('aria-hidden', 'false');
+        }else if(event.keyCode === 13 ){
+            ModalForm.handleSubmit(event);
+            console.log('yes');
+        }
     },
     checkField : function (){
         ModalForm.checkfieldInputText('firstName','il faut au minimun 2 caractères',2);

@@ -32,15 +32,9 @@ class Home  {
             const userCardDOM = photographerModel.getUserCardDOM();
             this.photographersSection.appendChild(userCardDOM);
         });
-        // photographers.forEach((photographer) => {
-        //     const photographerModel = new PhotographerFactory('home',photographer);
-        //     // const userCardDOM = photographerModel.getUserCardDOM();
-        //     // console.log(userCardDOM);
-        //     this.photographersSection.appendChild(photographerModel);
-        // });
-
 
     }
+
     async  init() {
         //Récupère les datas des photographes
         const { photographers }  = await this.datas.getAllData();
