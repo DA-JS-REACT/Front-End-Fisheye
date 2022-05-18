@@ -48,7 +48,8 @@
 
 @mixin effect-modal {
     &:hover,
-    &:active{
+    &:active,
+    &:focus{
         transform: translateY(1px);
     }
 }

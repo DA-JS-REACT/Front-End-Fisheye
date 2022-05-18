@@ -18,7 +18,7 @@ class ImageFactory {
         const img = document.createElement('img');
         img.classList.add('card-link__media','card-link__media--img');
         img.setAttribute('src', picture + this.media.image);
-        img.setAttribute('alt', this.media.title);
+        img.setAttribute('alt','image dont le titre est ' + this.media.title);
 
         return img;
 

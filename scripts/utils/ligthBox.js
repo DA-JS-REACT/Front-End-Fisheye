@@ -35,7 +35,7 @@ class LigthBox {
         const footer = document.querySelector('.photograph-footer');
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
-        main.setAttribute('aria-hidden', 'flase');
+        main.setAttribute('aria-hidden', 'false');
         footer.setAttribute('aria-hidden', 'false');
     }
 
@@ -140,7 +140,7 @@ class LigthBox {
         modal.setAttribute('aria-modal', 'true');
         modal.setAttribute('aria-labelleby','modalLighbox');
         modal.setAttribute('role', 'dialog');
-        modal.setAttribute('tabindex', '-1');
+        modal.setAttribute('tabindex', '1');
 
         const title = document.createElement('title');
         title.classList.add('sr-only');

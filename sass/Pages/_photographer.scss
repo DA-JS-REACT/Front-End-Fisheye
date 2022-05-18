@@ -107,14 +107,18 @@
             .card-content p {
                 padding:2px;
             }
-            p i  {
+            p .likes-counter  {
                 margin-left: 3px;
                 padding-right: 1px;
                 font-size:16px;
+                color: $colorPrimary;
+                border: none;
+                background:transparent;
                 cursor: pointer;
                 @include effect-modal;
+
             }
-            .active {
+            .active i{
                 color:$colorSecondary;
             }
         }

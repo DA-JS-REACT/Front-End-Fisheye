@@ -62,16 +62,22 @@ class ArticleMedia {
         small.classList.add('sr-only');
         span.appendChild(small);
         p.appendChild(span);
-
+        const buttonLikes = document.createElement( 'button');
+        buttonLikes.classList.add('likes-counter');
+        buttonLikes.setAttribute('type', 'button');
+        buttonLikes.setAttribute('aria-label', 'likes counter');
+        buttonLikes.setAttribute('aria-describedby', 'like');
+        buttonLikes.setAttribute('title', 'add or delete likes');
+        buttonLikes.setAttribute('tabindex','5');
         const i = document.createElement( 'i');
-        i.classList.add('fa-solid', 'fa-heart','likes-counter');
-        i.setAttribute('role','button');
-        const spanScrennreader = document.createElement('span');
-        spanScrennreader.classList.add('sr-only');
-        spanScrennreader.setAttribute('id', 'like');
-        spanScrennreader.textContent ='Coeur permettant d\'ajouter ou de retirer un like';
-        p.appendChild(i);
-        p.appendChild(spanScrennreader);
+        i.classList.add('fa-solid', 'fa-heart');
+        const spanScreenreader = document.createElement('span');
+        spanScreenreader.classList.add('sr-only');
+        spanScreenreader.setAttribute('id', 'like');
+        spanScreenreader.textContent ='Coeur permettant d\'ajouter ou de retirer un like';
+        buttonLikes.appendChild(i);
+        p.appendChild(buttonLikes);
+       buttonLikes.appendChild(spanScreenreader);
 
         div.appendChild(p);
 
