@@ -70,17 +70,11 @@ const ModalForm = {
     },
 
     handleKeyBoard : function (event) {
-        const modal = document.getElementById('contact_modal');
-        const main = document.getElementById('main');
-        const footer = document.querySelector('.photograph-footer');
-        if(event.keyCode === 27 && modal.getAttribute('aria-hidden','true')){
-            modal.style.display = 'none';
-            modal.setAttribute('aria-hidden', 'true');
-            main.setAttribute('aria-hidden', 'flase');
-            footer.setAttribute('aria-hidden', 'false');
+        if(event.keyCode === 27) {
+            ModalForm.closeModal();
         }else if(event.keyCode === 13 ){
             ModalForm.handleSubmit(event);
-            console.log('yes');
+
         }
     },
     checkField : function (){
