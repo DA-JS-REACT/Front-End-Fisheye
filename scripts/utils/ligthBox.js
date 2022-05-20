@@ -20,7 +20,6 @@ class LigthBox {
 
         } ));
         const modalClose = document.querySelector('.close-ligthbox');
-        console.log('1',modalClose.classList.contains('close-ligthbox'));
         modalClose.addEventListener('click',() => {
             this.closeLigthBox(modal,header,main,footer);
         });
@@ -44,7 +43,9 @@ class LigthBox {
     }
     handleKeyBoard(event,modal,header,main,footer,photographer,media,divImg) {
         const modalClose = document.querySelector('.close-ligthbox');
-
+        console.log(event.target);
+        const element = event.target;
+        console.log(element.classList.contains('card-link'));
         if(modalClose.classList.contains('close-ligthbox')){
             if(event.keyCode === 27) {
                 this.closeLigthBox(modal,header,main,footer);
@@ -52,26 +53,78 @@ class LigthBox {
                 this.nextOrprev(media,photographer,divImg);
             }else if(event.keyCode === 37){
                 this.nextOrprev(media,photographer,divImg,{hasPrev:true});
+            }else if(event.keyCode === 13 && element.classList.contains('card-link')){
+                this.launchLigthBox(modal,header,main,footer);
+                this.handleSliderClick(event,photographer,media,divImg,{haskeyboard:true});
+
             }
         }
 
     }
     launchLigthBox(modal,header,main,footer) {
-
+        this.keyboardAttribute(header,main);
         modal.style.display = 'block';
         modal.setAttribute('aria-hidden', 'false');
         header.setAttribute('aria-hidden', 'true');
+
         main.setAttribute('aria-hidden', 'true');
         footer.setAttribute('aria-hidden', 'true');
     }
 
     closeLigthBox(modal,header,main,footer) {
 
+        this.keyboardAttribute(header,main,{hasClose:true});
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
         header.setAttribute('aria-hidden', 'false');
         main.setAttribute('aria-hidden', 'false');
         footer.setAttribute('aria-hidden', 'false');
+    }
+
+    keyboardAttribute(header,main,options={}) {
+        const logo = header.firstElementChild;
+        logo.setAttribute('tabindex', '100');
+        const button = main.querySelector('.contact_button');
+        button.setAttribute('tabindex','200');
+        const selectSort = main.querySelector('#picture-select');
+        selectSort.setAttribute('tabindex','300');
+
+        const allLink = main.querySelectorAll('.card-link');
+
+        allLink.forEach(element => {
+            element.setAttribute('tabindex','400');
+        });
+
+        const allLikes = main.querySelectorAll('.likes-counter');
+        allLikes.forEach(element => {
+            element.setAttribute('tabindex','500');
+        });
+
+        if(options.hasClose){
+            // restore the original tabindex
+            logo.setAttribute('tabindex', '1');
+
+            button.setAttribute('tabindex','2');
+
+            selectSort.setAttribute('tabindex','3');
+            // cibling container for add dynamic attribute tabIndex
+            const section = document.querySelector('.photograph-picture');
+            let countElement = section.childElementCount;
+
+            // restore the original tabindex established in articleMedia.js
+            // for link
+            for(let i = 0; i < countElement -1; i++) {
+                let tabindexLink = 4 + i;
+                allLink[i].setAttribute('tabindex',tabindexLink);
+            }
+            // for likes button
+            for(let i = 0; i < countElement -1; i++) {
+                let tabindexLikes = 5 + i;
+                allLikes[i].setAttribute('tabindex',tabindexLikes);
+            }
+
+
+        }
     }
 
     /**
@@ -81,9 +134,14 @@ class LigthBox {
      * @param {array} media
      * @param {HtmlElement} divImg
      */
-    handleSliderClick(evt,photographer,media,divImg){
+    handleSliderClick(evt,photographer,media,divImg,options={}){
 
-        const element = evt.currentTarget;
+        let element = '';
+        if(options.haskeyboard){
+            element = evt.target;
+        }else {
+            element = evt.currentTarget;
+        }
 
         const nextElement = element.nextElementSibling;
 
@@ -92,7 +150,6 @@ class LigthBox {
         const id = parseInt(idElement.getAttribute('id'));
         // retrieves current index from the element with id
         let  index  = media.findIndex((element) => element.id === id);
-        console.log(index);
 
         this.typeOfMedia(photographer,media[index],divImg);
         // retrieves parent element
@@ -241,7 +298,7 @@ class LigthBox {
         modal.setAttribute('aria-modal', 'true');
         modal.setAttribute('aria-labelleby','modalLighbox');
         modal.setAttribute('role', 'dialog');
-        modal.setAttribute('tabindex', '-10');
+       
 
         const title = document.createElement('title');
         title.classList.add('sr-only');
@@ -287,6 +344,7 @@ class LigthBox {
         buttonPrev.setAttribute('aria-label', 'previous');
         buttonPrev.setAttribute('aria-describedby', 'previous-modal');
         buttonPrev.setAttribute('title', 'previous');
+        buttonPrev.setAttribute('tabindex', '2');
         const iElementPrev = document.createElement( 'i');
         iElementPrev.classList.add('fa-solid', 'fa-chevron-left','fa-4x');
         iElementPrev.setAttribute('title', 'previous');
@@ -309,6 +367,7 @@ class LigthBox {
         buttonClose.setAttribute('aria-label', 'Close');
         buttonClose.setAttribute('aria-describedby', 'close-modal');
         buttonClose.setAttribute('title', 'Close');
+        buttonClose.setAttribute('tabindex', '1');
 
 
         const closeElement = document.createElement('i');
@@ -334,6 +393,7 @@ class LigthBox {
         buttonNext.setAttribute('aria-label', 'next');
         buttonNext.setAttribute('aria-describedby', 'next-modal');
         buttonNext.setAttribute('title', 'next');
+        buttonNext.setAttribute('tabindex', '4');
 
         const iElementNext = document.createElement( 'i');
         iElementNext.classList.add('fa-solid', 'fa-chevron-right','fa-4x');

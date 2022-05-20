@@ -86,6 +86,7 @@ class PagePhotographer {
             );
             const photographPicture = mediaModel.getPageSectionsArticle(photographer,mediaModel);
             div.appendChild(photographPicture);
+           
 
         });
 
@@ -114,6 +115,7 @@ class PagePhotographer {
     getPageMainSection(photographSection) {
         const section = document.createElement('section');
         section.classList.add('photograph-section');
+       
 
         photographSection.appendChild(section);
 
@@ -183,6 +185,7 @@ class PagePhotographer {
         }
     }
 
+
     async init() {
         this.ligthBox.displayLigthBox();
         const data  = await this.datas.getAllData();
@@ -190,8 +193,7 @@ class PagePhotographer {
         this.displayOnePhotographer(photographers,this.checkUrl());
         this.displayMedia(media,this.checkUrl(),photographers);
         this.Sort.display(media);
-        // this.likes.dataCashingLikes();
-      
+
 
     }
 }

@@ -28,6 +28,7 @@ class VideoFactory {
         // add options for video in lightBox
         if(options.hasControl) {
             video.setAttribute('controls', '');
+            video.setAttribute('tabindex', '3');
         }
 
 

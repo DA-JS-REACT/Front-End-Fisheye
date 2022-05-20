@@ -24,13 +24,19 @@ class ArticleMedia {
      */
     getPageSectionsArticle(photographer,media) {
 
+        // cibling container for add dynamic attribute tabIndex
+        const section = document.querySelector('.photograph-picture');
+        let countElement = section.childElementCount;
+        
 
         const article = document.createElement('article');
         article.classList.add('article-picture');
         const link = document.createElement('a');
         link.classList.add('card-link');
         link.setAttribute('href', '#');
-        link.setAttribute('tabindex','4');
+        // order 4 for the first element, then adds 1 for the following
+        let tabindexLink = 4 + countElement;
+        link.setAttribute('tabindex',tabindexLink);
         link.setAttribute('role','button');
         link.setAttribute('aria-haspopup','dialog');
 
@@ -62,13 +68,17 @@ class ArticleMedia {
         small.classList.add('sr-only');
         span.appendChild(small);
         p.appendChild(span);
+        // button for likes
         const buttonLikes = document.createElement( 'button');
         buttonLikes.classList.add('likes-counter');
         buttonLikes.setAttribute('type', 'button');
         buttonLikes.setAttribute('aria-label', 'likes counter');
         buttonLikes.setAttribute('aria-describedby', 'like');
         buttonLikes.setAttribute('title', 'add or delete likes');
-        buttonLikes.setAttribute('tabindex','5');
+        // order 5 for the first element, then adds 1 for the following
+        let tabindexLikes = 5 + countElement;
+        buttonLikes.setAttribute('tabindex',tabindexLikes);
+
         const i = document.createElement( 'i');
         i.classList.add('fa-solid', 'fa-heart');
         const spanScreenreader = document.createElement('span');
