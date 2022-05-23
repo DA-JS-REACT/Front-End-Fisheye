@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "site listant des photographes et d'exposer leurs travaux",
   "type": "module",
-  "main": "index.js",
+  "main": "./scripts/index.js",
   "scripts": {
     "sass":"sass --watch ./sass/main.scss:./public/css/styles.css --style compressed",
     "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/",
