@@ -21,13 +21,13 @@ class PhotographerHomeFactory {
     getUserCardDOM() {
 
 
-        const picture = `./assets/photographers/${this.portrait}`;
+        const picture = `../public/assets/photographers/${this.portrait}`;
 
         const article = document.createElement( 'article' );
         article.classList.add('article');
 
         const link = document.createElement( 'a');
-        link.setAttribute( 'href', 'photographer.html?id='+ this.id);
+        link.setAttribute( 'href', '../public/photographer.html?id='+ this.id);
         link.setAttribute( 'aria-label', 'lien vers la page d\'un photographe');
         link.classList.add('article__link');
 
