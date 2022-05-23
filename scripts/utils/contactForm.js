@@ -5,7 +5,6 @@ const ModalForm = {
     header : document.querySelector('.header-page'),
     modal : document.getElementById('contact_modal'),
     main : document.getElementById('main'),
-    footer : document.querySelector('.photograph-footer'),
 
     init () {
         const modalLaunch = document.querySelector('.contact_button ');
@@ -36,7 +35,8 @@ const ModalForm = {
         ModalForm.header.setAttribute('aria-hidden', 'true');
         ModalForm.modal.setAttribute('aria-hidden', 'false');
         ModalForm.main.setAttribute('aria-hidden', 'true');
-        ModalForm.footer.setAttribute('aria-hidden', 'true');
+        const footer = document.querySelector('.photograph-footer');
+        footer.setAttribute('aria-hidden', 'true');
     },
 
     closeModal: function() {
@@ -45,7 +45,8 @@ const ModalForm = {
         ModalForm.header.setAttribute('aria-hidden', 'false');
         ModalForm.modal.setAttribute('aria-hidden', 'true');
         ModalForm.main.setAttribute('aria-hidden', 'flase');
-        ModalForm.footer.setAttribute('aria-hidden', 'false');
+        const footer = document.querySelector('.photograph-footer');
+        footer.setAttribute('aria-hidden', 'false');
     },
     /**
      * For submit form
