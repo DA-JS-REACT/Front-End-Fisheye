@@ -86,13 +86,13 @@ class PagePhotographer {
             );
             const photographPicture = mediaModel.getPageSectionsArticle(photographer,mediaModel);
             div.appendChild(photographPicture);
-           
+
 
         });
 
         this.getFooterPage(photographer,resultMedia);
         // this.likes.countLikes(resultMedia);
-        
+
         const divImg = document.querySelector('.slide__img');
         this.ligthBox.initializeModal(photographer,resultMedia,divImg);
 
@@ -115,7 +115,7 @@ class PagePhotographer {
     getPageMainSection(photographSection) {
         const section = document.createElement('section');
         section.classList.add('photograph-section');
-       
+
 
         photographSection.appendChild(section);
 
@@ -138,7 +138,7 @@ class PagePhotographer {
         listFirst.classList.add('footer-list__li');
         const span = document.createElement('span');
         span.classList.add('sum-likes');
-        
+
 
         const sum = this.likes.sumLikes(media);
         span.textContent = sum;

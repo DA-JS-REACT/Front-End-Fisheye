@@ -151,77 +151,8 @@ class LigthBox {
         let  index  = media.findIndex((element) => element.id === id);
 
         this.typeOfMedia(photographer,media[index],divImg);
-        // retrieves parent element
-        // const parentElement = divImg.closest('.slide');
-        // const prev = parentElement.querySelector('.previous');
-        // const next = parentElement.querySelector('.next');
 
-        // prev.addEventListener('click',() => {
-        //     // count number of media
-        //     const numberOfSlides = media.length;
-
-        //     if ( index <= numberOfSlides - 1 && index > 0 ){
-        //         index --;
-        //     }
-        //     else {
-        //         index = numberOfSlides -1 ;
-        //     }
-        //     this.typeOfMedia(photographer,media[index],divImg);
-
-
-        // });
-        // next.addEventListener('click',() => {
-
-        //     const numberOfSlides = media.length;
-        //     console.log(index);
-
-        //     if ( index < numberOfSlides -1 ){
-        //         console.log('yes');
-        //         index ++;
-        //     }else {
-        //         index = 0;
-        //     }
-        //     this.typeOfMedia(photographer,media[index],divImg);
-
-        // });
     }
-    // /**
-    //  *
-    //  * @param {array} media
-    //  * @param {array} photographer
-    //  * @param {HtmlElement} divImg
-    //  */
-    // next(media,photographer,divImg) {
-
-    //     const parentElement = divImg.closest('.slide');
-
-
-    //     const mediaElement = parentElement.querySelector('.card-link__media ');
-
-    //     const test = mediaElement.getAttribute('src');
-
-    //     const path = test.split('/');
-    //     let index = '';
-    //     // retrieves current index from the element with  name
-    //     if(mediaElement.classList.contains('card-link__media--img')){
-
-    //         index  = media.findIndex((element) => element.image === path[4]);
-
-    //     }else {
-    //         index  = media.findIndex((element) => element.video === path[4]);
-    //     }
-
-    //     const numberOfSlides = media.length;
-
-    //     if ( index < numberOfSlides -1 ){
-          
-    //         index ++;
-    //     }else {
-    //         index = 0;
-    //     }
-    //     this.typeOfMedia(photographer,media[index],divImg);
-
-    // }
 
     /**
      *
@@ -341,7 +272,7 @@ class LigthBox {
         const buttonPrev = document.createElement('button');
         buttonPrev.classList.add('previous');
         buttonPrev.setAttribute('type', 'button');
-        
+
         buttonPrev.setAttribute('aria-describedby', 'previous-modal');
         buttonPrev.setAttribute('title', 'previous');
         buttonPrev.setAttribute('tabindex', '2');
@@ -351,7 +282,7 @@ class LigthBox {
 
         buttonPrev.appendChild( iElementPrev );
         divPrev.appendChild(buttonPrev);
-      
+
         const smallPrev = document.createElement('small');
         smallPrev.classList.add('sr-only');
         smallPrev.setAttribute('id','previous-modal');

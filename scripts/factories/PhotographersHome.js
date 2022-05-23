@@ -1,4 +1,4 @@
-//import {PhotographerList} from '../factories/PhotographerList.js';
+
 class PhotographerHomeFactory {
 
     constructor(id, name, portrait, city, country,tagline,price) {

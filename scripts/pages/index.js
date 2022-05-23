@@ -18,7 +18,7 @@ class Home  {
      */
 
     async displayData(photographers) {
-
+        
         photographers.forEach((photographer) => {
             const photographerModel = new PhotographerHomeFactory(
                 photographer.id,
@@ -38,6 +38,7 @@ class Home  {
     async  init() {
         //Récupère les datas des photographes
         const { photographers }  = await this.datas.getAllData();
+        this.proxy.HomePage(photographers);
 
         this.displayData(photographers);
 
@@ -45,7 +46,7 @@ class Home  {
 
 
 }
-
+export {Home};
 const home = new Home();
 home.init();
 

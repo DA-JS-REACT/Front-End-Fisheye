@@ -49,7 +49,7 @@ class LikesService {
             if(element.classList.contains('likes-counter')){
                 this.refreshLikes(media,element);
             }
-            
+
         }
 
     }
@@ -63,7 +63,7 @@ class LikesService {
 
         // targets the element that displays the number of likes based on the click
         const nbrLikes = element.previousElementSibling;
-        console.log(element);
+
         element.classList.toggle('active');
 
 
