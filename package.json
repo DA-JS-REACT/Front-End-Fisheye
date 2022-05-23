@@ -2,6 +2,7 @@
   "name": "front-end-fisheye",
   "version": "1.0.0",
   "description": "site listant des photographes et d'exposer leurs travaux",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "sass":"sass --watch ./sass/main.scss:./public/css/styles.css --style compressed",
