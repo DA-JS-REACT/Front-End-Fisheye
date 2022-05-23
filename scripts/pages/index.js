@@ -6,7 +6,7 @@ import { Proxy } from '../Proxy/Proxy.js' ;
 class Home  {
 
     constructor() {
-        const newLocal = '../data/photographers.json';
+        const newLocal = './data/photographers.json';
         this.datas = new Api(newLocal);
         this.photographersSection = document.querySelector('.photographer-section');
         this.proxy = new Proxy();
