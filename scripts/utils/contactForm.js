@@ -2,6 +2,10 @@
 const ModalForm = {
 
     success: true,
+    header : document.querySelector('.header-page'),
+    modal : document.getElementById('contact_modal'),
+    main : document.getElementById('main'),
+    footer : document.querySelector('.photograph-footer'),
 
     init () {
         const modalLaunch = document.querySelector('.contact_button ');
@@ -27,23 +31,21 @@ const ModalForm = {
     },
 
     displayModal: function () {
-        const modal = document.getElementById('contact_modal');
-        const main = document.getElementById('main');
-        const footer = document.querySelector('.photograph-footer');
-        modal.style.display = 'block';
-        modal.setAttribute('aria-hidden', 'false');
-        main.setAttribute('aria-hidden', 'true');
-        footer.setAttribute('aria-hidden', 'true');
+
+        ModalForm.modal.style.display = 'block';
+        ModalForm.header.setAttribute('aria-hidden', 'true');
+        ModalForm.modal.setAttribute('aria-hidden', 'false');
+        ModalForm.main.setAttribute('aria-hidden', 'true');
+        ModalForm.footer.setAttribute('aria-hidden', 'true');
     },
 
     closeModal: function() {
-        const modal = document.getElementById('contact_modal');
-        const main = document.getElementById('main');
-        const footer = document.querySelector('.photograph-footer');
-        modal.style.display = 'none';
-        modal.setAttribute('aria-hidden', 'true');
-        main.setAttribute('aria-hidden', 'flase');
-        footer.setAttribute('aria-hidden', 'false');
+
+        ModalForm.modal.style.display = 'none';
+        ModalForm.header.setAttribute('aria-hidden', 'false');
+        ModalForm.modal.setAttribute('aria-hidden', 'true');
+        ModalForm.main.setAttribute('aria-hidden', 'flase');
+        ModalForm.footer.setAttribute('aria-hidden', 'false');
     },
     /**
      * For submit form
@@ -73,8 +75,15 @@ const ModalForm = {
         if(event.keyCode === 27) {
             ModalForm.closeModal();
         }else if(event.keyCode === 13 ){
-            ModalForm.handleSubmit(event);
-
+            if(event.target.classList.contains('contact_button')){
+                ModalForm.displayModal();
+            }
+            
+            // for validation form
+            if(event.target.hasAttribute('type','submit')){
+                event.preventDefault();
+                ModalForm.checkField();
+            }
         }
     },
     checkField : function (){

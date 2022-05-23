@@ -31,6 +31,9 @@ class LikesService {
         clickEvent.forEach(btn => btn.addEventListener('click',(evt) => {
             this.handleClickLikes(evt,media);
         }));
+        clickEvent.forEach(btn => btn.addEventListener('keydown',(evt) => {
+            this.handleKeyboard(evt,media);
+        }));
 
     }
 
@@ -38,6 +41,16 @@ class LikesService {
 
         const element = evt.currentTarget;
         this.refreshLikes(media,element);
+
+    }
+    handleKeyboard(evt,media){
+        const element = evt.target;
+        if(evt.keyCode === 13){
+            if(element.classList.contains('likes-counter')){
+                this.refreshLikes(media,element);
+            }
+            
+        }
 
     }
 

@@ -138,7 +138,7 @@ class PagePhotographer {
         listFirst.classList.add('footer-list__li');
         const span = document.createElement('span');
         span.classList.add('sum-likes');
-        listFirst.appendChild(span);
+        
 
         const sum = this.likes.sumLikes(media);
         span.textContent = sum;
@@ -147,6 +147,7 @@ class PagePhotographer {
         smallInfoLike.textContent = 'nombre de likes au total';
         smallInfoLike.classList.add('sr-only');
         span.appendChild(smallInfoLike);
+        listFirst.appendChild(span);
         const i = document.createElement( 'i');
         i.classList.add('fa-solid', 'fa-heart');
         listFirst.appendChild(i);

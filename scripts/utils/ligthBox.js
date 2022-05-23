@@ -43,9 +43,8 @@ class LigthBox {
     }
     handleKeyBoard(event,modal,header,main,footer,photographer,media,divImg) {
         const modalClose = document.querySelector('.close-ligthbox');
-        console.log(event.target);
+
         const element = event.target;
-        console.log(element.classList.contains('card-link'));
         if(modalClose.classList.contains('close-ligthbox')){
             if(event.keyCode === 27) {
                 this.closeLigthBox(modal,header,main,footer);
@@ -295,12 +294,13 @@ class LigthBox {
         const modal = document.createElement('div');
         modal.setAttribute('id', 'ligthbox');
         modal.setAttribute('aria-hidden', 'true');
-        modal.setAttribute('aria-modal', 'true');
+        // modal.setAttribute('aria-modal', 'true');
         modal.setAttribute('aria-labelleby','modalLighbox');
-        modal.setAttribute('role', 'dialog');
-       
 
-        const title = document.createElement('title');
+        modal.setAttribute('role', 'dialog');
+
+
+        const title = document.createElement('small');
         title.classList.add('sr-only');
         title.setAttribute('id', 'modalLighbox');
         title.textContent ='Carousel des images et video du photographe';
@@ -341,7 +341,7 @@ class LigthBox {
         const buttonPrev = document.createElement('button');
         buttonPrev.classList.add('previous');
         buttonPrev.setAttribute('type', 'button');
-        buttonPrev.setAttribute('aria-label', 'previous');
+        
         buttonPrev.setAttribute('aria-describedby', 'previous-modal');
         buttonPrev.setAttribute('title', 'previous');
         buttonPrev.setAttribute('tabindex', '2');
@@ -364,7 +364,7 @@ class LigthBox {
         const buttonClose = document.createElement('button');
         buttonClose.classList.add('close-ligthbox');
         buttonClose.setAttribute('type', 'button');
-        buttonClose.setAttribute('aria-label', 'Close');
+
         buttonClose.setAttribute('aria-describedby', 'close-modal');
         buttonClose.setAttribute('title', 'Close');
         buttonClose.setAttribute('tabindex', '1');
@@ -390,7 +390,6 @@ class LigthBox {
         buttonNext.classList.add('next');
 
         buttonNext.setAttribute('type', 'button');
-        buttonNext.setAttribute('aria-label', 'next');
         buttonNext.setAttribute('aria-describedby', 'next-modal');
         buttonNext.setAttribute('title', 'next');
         buttonNext.setAttribute('tabindex', '4');
