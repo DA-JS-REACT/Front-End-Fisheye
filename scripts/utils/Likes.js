@@ -1,4 +1,4 @@
-import {StateLikes} from '../models/StateLikes.js';
+import {StateLikes} from '../models/stateLikes.js';
 
 class LikesService {
     constructor(){
