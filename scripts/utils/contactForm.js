@@ -101,10 +101,20 @@ const ModalForm = {
             if(event.target.hasAttribute('type','submit')){
                 event.preventDefault();
                 ModalForm.checkField();
+                if(ModalForm.success){
+                    //vide tout les champs
+                    const inputElement = document.querySelectorAll('input');
+                    for (let input of inputElement) {
+                        input.value = '';
+                    }
+                    const textareaElement = document.querySelector('#message');
+                    textareaElement.value = '';
+                    ModalForm.closeModal();
+                }
             }
         }
     },
-    
+
     checkField : function (){
         ModalForm.checkfieldInputText('firstName','il faut au minimun 2 caractères',2);
         ModalForm.checkfieldInputText('lastName','il faut au minimun 2 caractères',2);
