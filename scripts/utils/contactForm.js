@@ -1,3 +1,5 @@
+import { SetAttributeTabindex } from '../utils/setAttributeTabindex.js';
+
 
 const ModalForm = {
 
@@ -5,6 +7,8 @@ const ModalForm = {
     header : document.querySelector('.header-page'),
     modal : document.getElementById('contact_modal'),
     main : document.getElementById('main'),
+    // update tabindex for priority tabulation
+    changeAttribute: new SetAttributeTabindex(),
 
     init () {
         const modalLaunch = document.querySelector('.contact_button ');
@@ -28,7 +32,9 @@ const ModalForm = {
         divElement.forEach((element) => element.appendChild(spanElement.cloneNode(true)));
 
     },
-
+    /**
+     *Open modal 
+     */
     displayModal: function () {
 
         ModalForm.modal.style.display = 'block';
@@ -37,8 +43,11 @@ const ModalForm = {
         ModalForm.main.setAttribute('aria-hidden', 'true');
         const footer = document.querySelector('.photograph-footer');
         footer.setAttribute('aria-hidden', 'true');
+        ModalForm.changeAttribute.keyboardAttribute(ModalForm.header,ModalForm.main);
     },
-
+    /**
+     * Close modal
+     */
     closeModal: function() {
 
         ModalForm.modal.style.display = 'none';
@@ -47,11 +56,12 @@ const ModalForm = {
         ModalForm.main.setAttribute('aria-hidden', 'flase');
         const footer = document.querySelector('.photograph-footer');
         footer.setAttribute('aria-hidden', 'false');
+        ModalForm.changeAttribute.keyboardAttribute(ModalForm.header,ModalForm.main,{hasClose:true});
     },
     /**
      * For submit form
-     * @param {*} event 
-     * 
+     * @param {*} event
+     *
      */
     handleSubmit: function(event) {
         event.preventDefault();
@@ -67,11 +77,18 @@ const ModalForm = {
             ModalForm.closeModal();
         }
     },
+    /**
+     * Event change
+     * @param {*} event 
+     */
     handleChange : function (event) {
         event.preventDefault();
         ModalForm.checkField();
     },
-
+    /**
+     *Event keyboard
+     * @param {*} event 
+     */
     handleKeyBoard : function (event) {
         if(event.keyCode === 27) {
             ModalForm.closeModal();
@@ -79,7 +96,7 @@ const ModalForm = {
             if(event.target.classList.contains('contact_button')){
                 ModalForm.displayModal();
             }
-            
+
             // for validation form
             if(event.target.hasAttribute('type','submit')){
                 event.preventDefault();
@@ -87,6 +104,7 @@ const ModalForm = {
             }
         }
     },
+    
     checkField : function (){
         ModalForm.checkfieldInputText('firstName','il faut au minimun 2 caractères',2);
         ModalForm.checkfieldInputText('lastName','il faut au minimun 2 caractères',2);

@@ -1,9 +1,13 @@
 
 import { MediaFactory } from '../factories/MediaFactory.js';
+import { SetAttributeTabindex } from '../utils/setAttributeTabindex.js';
 
 class LigthBox {
 
-
+    constructor() {
+        // update tabindex for priority tabulation
+        this.changeAttribute = new SetAttributeTabindex();
+    }
 
     initializeModal(photographer,media,divImg){
 
@@ -41,6 +45,17 @@ class LigthBox {
 
 
     }
+    /**
+     * Keyboard navigation
+     * @param {Event} event
+     * @param {HtmlElement} modal
+     * @param {HtmlElement} header
+     * @param {HtmlElement} main
+     * @param {HtmlElement} footer
+     * @param {array} photographer
+     * @param {array} media
+     * @param {HtmlElement} divImg
+     */
     handleKeyBoard(event,modal,header,main,footer,photographer,media,divImg) {
         const modalClose = document.querySelector('.close-ligthbox');
 
@@ -60,8 +75,15 @@ class LigthBox {
         }
 
     }
+    /**
+     * Open ligthbox
+     * @param {HtmlElement} modal
+     * @param {HtmlElement} header
+     * @param {HtmlElement} main
+     * @param {HtmlElement} footer
+     */
     launchLigthBox(modal,header,main,footer) {
-        this.keyboardAttribute(header,main);
+        this.changeAttribute.keyboardAttribute(header,main);
         modal.style.display = 'block';
         modal.setAttribute('aria-hidden', 'false');
         header.setAttribute('aria-hidden', 'true');
@@ -70,9 +92,16 @@ class LigthBox {
         footer.setAttribute('aria-hidden', 'true');
     }
 
-    closeLigthBox(modal,header,main,footer) {
+    /**
+     * Close ligthbox
+     * @param {HtmlElement} modal
+     * @param {HtmlElement} header
+     * @param {HtmlElement} main
+     * @param {HtmlElement} footer
+     */
 
-        this.keyboardAttribute(header,main,{hasClose:true});
+    closeLigthBox(modal,header,main,footer) {
+        this.changeAttribute.keyboardAttribute(header,main,{hasClose:true});
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
         header.setAttribute('aria-hidden', 'false');
@@ -80,54 +109,9 @@ class LigthBox {
         footer.setAttribute('aria-hidden', 'false');
     }
 
-    keyboardAttribute(header,main,options={}) {
-        const logo = header.firstElementChild;
-        logo.setAttribute('tabindex', '100');
-        const button = main.querySelector('.contact_button');
-        button.setAttribute('tabindex','200');
-        const selectSort = main.querySelector('#picture-select');
-        selectSort.setAttribute('tabindex','300');
-
-        const allLink = main.querySelectorAll('.card-link');
-
-        allLink.forEach(element => {
-            element.setAttribute('tabindex','400');
-        });
-
-        const allLikes = main.querySelectorAll('.likes-counter');
-        allLikes.forEach(element => {
-            element.setAttribute('tabindex','500');
-        });
-
-        if(options.hasClose){
-            // restore the original tabindex
-            logo.setAttribute('tabindex', '1');
-
-            button.setAttribute('tabindex','2');
-
-            selectSort.setAttribute('tabindex','3');
-            // cibling container for add dynamic attribute tabIndex
-            const section = document.querySelector('.photograph-picture');
-            let countElement = section.childElementCount;
-
-            // restore the original tabindex established in articleMedia.js
-            // for link
-            for(let i = 0; i < countElement -1; i++) {
-                let tabindexLink = 4 + i;
-                allLink[i].setAttribute('tabindex',tabindexLink);
-            }
-            // for likes button
-            for(let i = 0; i < countElement -1; i++) {
-                let tabindexLikes = 5 + i;
-                allLikes[i].setAttribute('tabindex',tabindexLikes);
-            }
-
-
-        }
-    }
 
     /**
-     *
+     * For caroussel
      * @param {event} evt
      * @param {array} photographer
      * @param {array} media
