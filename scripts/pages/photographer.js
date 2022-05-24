@@ -130,6 +130,7 @@ class PagePhotographer {
         const footer = document.createElement('footer');
         footer.classList.add('photograph-footer');
         footer.setAttribute('role', 'photographerInfo');
+        footer.setAttribute('aria-hidden', 'false');
 
         const ulElement = document.createElement('ul');
         ulElement.classList.add('footer-list');
