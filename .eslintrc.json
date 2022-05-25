@@ -25,6 +25,10 @@
         "semi": [
             "error",
             "always"
+        ],
+        "camelcase":[
+            "error",
+            "always"
         ]
     }
 }
