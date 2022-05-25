@@ -27,7 +27,7 @@ class ArticleMedia {
         // cibling container for add dynamic attribute tabIndex
         const section = document.querySelector('.photograph-picture');
         let countElement = section.childElementCount;
-        
+
 
         const article = document.createElement('article');
         article.classList.add('article-picture');

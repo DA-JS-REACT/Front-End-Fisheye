@@ -5,9 +5,9 @@ class VideoFactory {
     }
 
     /**
-     * 
-     * @param {array} photographer 
-     * @param {object} options 
+     *
+     * @param {array} photographer
+     * @param {object} options
      * @returns
      */
     displayMedia(photographer,options={}){

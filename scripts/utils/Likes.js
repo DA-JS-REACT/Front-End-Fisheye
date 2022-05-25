@@ -45,7 +45,7 @@ class LikesService {
     }
     handleKeyboard(evt,media){
         const element = evt.target;
-        if(evt.keyCode === 13){
+        if(evt.key === 'Enter'){
             if(element.classList.contains('likes-counter')){
                 this.refreshLikes(media,element);
             }

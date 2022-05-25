@@ -1,6 +1,6 @@
 import { Api } from '../api/Api.js';
 import { PhotographerHomeFactory } from '../factories/PhotographersHome.js' ;
-import { Proxy } from '../Proxy/Proxy.js' ;
+
 
 
 class Home  {
@@ -9,7 +9,7 @@ class Home  {
         const newLocal = './data/photographers.json';
         this.datas = new Api(newLocal);
         this.photographersSection = document.querySelector('.photographer-section');
-        this.proxy = new Proxy();
+
     }
 
     /**

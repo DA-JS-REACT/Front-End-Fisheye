@@ -61,13 +61,13 @@ class LigthBox {
 
         const element = event.target;
         if(modalClose.classList.contains('close-ligthbox')){
-            if(event.keyCode === 27) {
+            if(event.key === 'Escape') {
                 this.closeLigthBox(modal,header,main,footer);
-            }else if(event.keyCode === 39){
+            }else if(event.key === 'ArrowRight'){
                 this.nextOrprev(media,photographer,divImg);
-            }else if(event.keyCode === 37){
+            }else if(event.key === 'ArrowLeft'){
                 this.nextOrprev(media,photographer,divImg,{hasPrev:true});
-            }else if(event.keyCode === 13 && element.classList.contains('card-link')){
+            }else if(event.key === 'Enter' && element.classList.contains('card-link')){
                 this.launchLigthBox(modal,header,main,footer);
                 this.handleSliderClick(event,photographer,media,divImg,{haskeyboard:true});
 

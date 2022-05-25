@@ -2,7 +2,6 @@ class ImageFactory {
 
     constructor (media) {
         this.media = media;
-     
     }
 
 

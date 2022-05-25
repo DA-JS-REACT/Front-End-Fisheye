@@ -90,9 +90,9 @@ const ModalForm = {
      * @param {*} event 
      */
     handleKeyBoard : function (event) {
-        if(event.keyCode === 27) {
+        if(event.key === 'Escape') {
             ModalForm.closeModal();
-        }else if(event.keyCode === 13 ){
+        }else if(event.key === 'Enter'){
             if(event.target.classList.contains('contact_button')){
                 ModalForm.displayModal();
             }
