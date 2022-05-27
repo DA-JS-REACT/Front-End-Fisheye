@@ -15,6 +15,14 @@
         &__title {
             @include title-name;
         }
+        &__location{
+            color: $colorPrimary;
+            padding:2px;
+        }
+        &__tagline {
+            padding:2px;
+            margin-top:5px;
+        }
     }
     .photograph-button {
         order: 2;

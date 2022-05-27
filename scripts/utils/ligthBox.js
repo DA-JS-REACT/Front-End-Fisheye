@@ -180,10 +180,15 @@ class LigthBox {
         }
 
         this.typeOfMedia(photographer,media[index],divImg);
+        this.mediaTitle(media[index],divImg);
 
     }
 
+    mediaTitle(){
+        const h4 = document.createElement('h4');
+        return h4;
 
+    }
 
     /**
      *
@@ -194,13 +199,25 @@ class LigthBox {
     typeOfMedia(photographer,media,divImg){
 
         const medias = new MediaFactory(media).displayMedia(photographer,{hasControl:true});
+        const title = this.mediaTitle();
 
         if(divImg.hasChildNodes('img') || divImg.hasChildNodes('video')){
             const old = divImg.firstChild;
             divImg.replaceChild(medias,old);
         }else {
             divImg.appendChild(medias);
+
         }
+
+        title.textContent = media.title;
+        const theFirstChild = divImg.firstChild;
+        // see https://developer.mozilla.org/fr/docs/Web/API/Node/insertBefore
+        divImg.insertBefore(title, theFirstChild.nextSibling);
+        if(divImg.hasChildNodes('h3')){
+            const old = divImg.lastChild;
+            divImg.replaceChild(title,old);
+        }
+
 
     }
 
@@ -245,11 +262,18 @@ class LigthBox {
         const divImg = document.createElement('div');
         divImg.classList.add('slide__img');
 
+      
+
         slider.appendChild(divPrev);
         slider.appendChild(divImg);
         slider.appendChild(divNext);
         div.appendChild(header);
         div.appendChild(slider);
+
+
+        const h4 = document.createElement('h4');
+        h4.textContent=" media.title";
+        divImg.appendChild(h4);
 
         //create button for  previous
 

@@ -192,6 +192,7 @@ class PagePhotographer {
         this.ligthBox.displayLigthBox();
         const data  = await this.datas.getAllData();
         const {photographers, media } = data;
+        
         this.displayOnePhotographer(photographers,this.checkUrl());
         this.displayMedia(media,this.checkUrl(),photographers);
         this.Sort.display(media);

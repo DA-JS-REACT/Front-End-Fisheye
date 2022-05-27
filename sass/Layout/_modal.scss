@@ -73,17 +73,25 @@
             height: 550px;
             margin: 0 5px;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             border-radius: 5px;
             overflow: hidden;
             position: relative;
-            top: -45px;
+            top: -40px;
             .card-link__media {
-                width: 100%;
+                width: 600px;
                 height: auto;
-                max-height: 550px;
+                max-height: 510px;
                 object-fit: contain;
 
+            }
+            h4{
+                margin-top: 5px;
+                align-self: center;
+                text-align: start;
+                color:$colorPrimary;
             }
         }
         .next,
@@ -111,6 +119,9 @@
 .modal header h2 {
     font-size: 32px;
     font-weight: normal;
-    text-align: center;
+    text-align: start;
+    .title{
+        padding-left: 2px;
+    }
 }
 
