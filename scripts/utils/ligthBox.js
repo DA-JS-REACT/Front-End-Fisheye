@@ -27,16 +27,16 @@ class LigthBox {
         modalClose.addEventListener('click',() => {
             this.closeLigthBox(modal,header,main,footer);
         });
-        // event for previous click
-        const prev = document.querySelector('.previous');
-        prev.addEventListener('click', () => {
-            this.nextOrprev(media,photographer,divImg,{hasPrev:true});
-        });
+        //   // event for previous click
+        //   const prev = document.querySelector('.previous');
+        //   prev.addEventListener('click', () => {
+        //       this.nextOrprev(media,photographer,divImg,{hasPrev:true});
+        //   });
         // event for next click
-        const next = document.querySelector('.next');
-        next.addEventListener('click', () => {
-            this.nextOrprev(media,photographer,divImg);
-        });
+        // const next = document.querySelector('.next');
+        // next.addEventListener('click', () => {
+        //     this.nextOrprev(media,photographer,divImg,index);
+        // });
         // event for keyboard
         const body = document.querySelector('body');
         body.addEventListener('keydown',(event) => {
@@ -134,59 +134,94 @@ class LigthBox {
         // retrieves current index from the element with id
         let  index  = media.findIndex((element) => element.id === id);
 
-        this.typeOfMedia(photographer,media[index],divImg);
 
-    }
-
-    /**
-     *
-     * @param {array} media
-     * @param {array} photographer
-     * @param {HtmlElement} divImg
-     */
-    nextOrprev(media,photographer,divImg,options={}) {
-
-        const parentElement = divImg.closest('.slide');
+         this.typeOfMedia(photographer,media[index],divImg);
+        // event for next click
+        const next = document.querySelector('.next');
+        next.addEventListener('click',() => {
 
 
-        const mediaElement = parentElement.querySelector('.card-link__media ');
+            const numberOfSlides = media.length;
 
-        const test = mediaElement.getAttribute('src');
-
-        const path = test.split('/');
-        let index = '';
-        // retrieves current index from the element with  name
-        if(mediaElement.classList.contains('card-link__media--img')){
-
-            index  = media.findIndex((element) => element.image === path[4]);
-
-        }else {
-            index  = media.findIndex((element) => element.video === path[4]);
-        }
-
-        const numberOfSlides = media.length;
-        if(options.hasPrev){
-            if ( index <= numberOfSlides - 1  && index > 0 ){
-                index --;
-            }else {
-                index = numberOfSlides - 1 ;
-            }
-        }else {
             if ( index < numberOfSlides -1 ){
                 index ++;
             }else {
                 index = 0;
             }
-        }
+            this.typeOfMedia(photographer,media[index],divImg);
 
-        this.typeOfMedia(photographer,media[index],divImg);
-        this.mediaTitle(media[index],divImg);
+        });
+        // event for previous click
+        const prev = document.querySelector('.previous');
+        prev.addEventListener('click',() => {
+
+            const numberOfSlides = media.length;
+
+            if ( index <= numberOfSlides - 1 && index > 0 ){
+                index --;
+            }
+            else {
+                index = numberOfSlides -1 ;
+            }
+            this.typeOfMedia(photographer,media[index],divImg);
+
+
+        });
 
     }
 
+    // /**
+    //  *
+    //  * @param {array} media
+    //  * @param {array} photographer
+    //  * @param {HtmlElement} divImg
+    //  */
+    // nextOrprev(media,photographer,divImg,index,options={}) {
+
+    //     const parentElement = divImg.closest('.slide');
+
+
+    //     const mediaElement = parentElement.querySelector('.card-link__media');
+    //     console.log(mediaElement);
+
+    //     const pathToMedia = mediaElement.getAttribute('src');
+
+    //     const nameMedia = pathToMedia.split('/');
+    //     let index = '';
+    //     // retrieves current index from the element with  name
+    //     if(mediaElement.classList.contains('card-link__media--img')){
+
+    //         index = media.findIndex((element) => element.image === nameMedia[4]);
+    //         console.log('img',index);
+
+    //     }else {
+    //         index  = media.findIndex((element) => element.video === nameMedia[4]);
+    //         console.log('vid',index);
+    //     }
+    //     console.log(index);
+
+    //     const numberOfSlides = media.length;
+    //     if(options.hasPrev){
+    //         if ( index <= numberOfSlides - 1  && index > 0 ){
+    //             index --;
+    //         }else {
+    //             index = numberOfSlides - 1 ;
+    //         }
+    //     }else {
+    //         if ( index < numberOfSlides -1 ){
+    //             index ++;
+    //         }else {
+    //             index = 0;
+    //         }
+    //     }
+
+    //     this.typeOfMedia(photographer,media[index],divImg);
+
+    // }
+
     mediaTitle(){
-        const h4 = document.createElement('h4');
-        return h4;
+        const h3 = document.createElement('h3');
+        return h3;
 
     }
 

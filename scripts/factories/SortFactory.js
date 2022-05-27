@@ -21,7 +21,7 @@ class SortFactory {
         select.classList.add('select-sort');
         select.setAttribute('name','picture');
         select.setAttribute('id','picture-select');
-        select.setAttribute('aria-describedby','sort');
+        select.setAttribute('aria-labelleby','sort');
         select.setAttribute('tabindex','3');
         
 
