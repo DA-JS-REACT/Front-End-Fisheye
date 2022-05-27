@@ -25,6 +25,8 @@
     background-color: $colorPrimary;
     border-radius: 5px;
     box-shadow: 0 3px  $colorGray;
+    transform: translateY(0);
+    transition: transform 0.2s;
     cursor: pointer;
     @include effect-btn;
 }
@@ -36,7 +38,9 @@
 }
 
 @mixin effect-btn {
-    &:hover{
+    &:hover,
+    &:focus{
+        background-color:$colorSecondary;
         transform: translateY(3px);
         box-shadow: 0 1px  darken($colorGray,5%);
     }
