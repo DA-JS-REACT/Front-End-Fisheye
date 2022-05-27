@@ -63,14 +63,9 @@ class LigthBox {
         if(modalClose.classList.contains('close-ligthbox')){
             if(event.key === 'Escape') {
                 this.closeLigthBox(modal,header,main,footer);
-            }else if(event.key === 'ArrowRight'){
-                this.nextOrprev(media,photographer,divImg);
-            }else if(event.key === 'ArrowLeft'){
-                this.nextOrprev(media,photographer,divImg,{hasPrev:true});
             }else if(event.key === 'Enter' && element.classList.contains('card-link')){
                 this.launchLigthBox(modal,header,main,footer);
                 this.handleSliderClick(event,photographer,media,divImg,{haskeyboard:true});
-
             }
         }
 
@@ -117,7 +112,7 @@ class LigthBox {
      * @param {array} media
      * @param {HtmlElement} divImg
      */
-    handleSliderClick(evt,photographer,media,divImg,options={}){
+    handleSliderClick(evt,photographer,media,divImg,options={},optionsPrev={}){
 
         let element = '';
         if(options.haskeyboard){
@@ -149,7 +144,6 @@ class LigthBox {
                 index = 0;
             }
             this.typeOfMedia(photographer,media[index],divImg);
-
         });
         // event for previous click
         const prev = document.querySelector('.previous');
@@ -167,57 +161,109 @@ class LigthBox {
 
 
         });
+        const body = document.querySelector('body');
+        body.addEventListener('keydown',(event) => {
+            if(event.key === 'ArrowRight'){
+                const numberOfSlides = media.length;
+
+                if ( index < numberOfSlides -1 ){
+                    index ++;
+                }else {
+                    index = 0;
+                }
+                this.typeOfMedia(photographer,media[index],divImg);
+            }else if(event.key === 'ArrowLeft'){
+                const numberOfSlides = media.length;
+
+                if ( index <= numberOfSlides - 1 && index > 0 ){
+                    index --;
+                }
+                else {
+                    index = numberOfSlides -1 ;
+                }
+                this.typeOfMedia(photographer,media[index],divImg);
+    
+            }
+
+        });
+        // const numberOfSlides = media.length;
+        // if(options.haskeyboard && optionsPrev.hasPrev ){
+        //     console.log(media);
+           
+            
+        //         if ( index <= numberOfSlides - 1  && index > 0 ){
+        //             index --;
+        //         }else {
+        //             index = numberOfSlides - 1 ;
+        //         }
+               
+        //     }else if(options.haskeyboard) {
+        //         if ( index < numberOfSlides -1 ){
+        //             index ++;
+
+        //         }else {
+        //             index = 0;
+        //         }
+                
+        //     }
+        //     this.typeOfMedia(photographer,media[index],divImg);
+
+
 
     }
 
-    // /**
-    //  *
-    //  * @param {array} media
-    //  * @param {array} photographer
-    //  * @param {HtmlElement} divImg
-    //  */
-    // nextOrprev(media,photographer,divImg,index,options={}) {
+    /**
+     *
+     * @param {array} media
+     * @param {array} photographer
+     * @param {HtmlElement} divImg
+     */
+    nextOrprev(media,photographer,divImg,index,options={}) {
 
-    //     const parentElement = divImg.closest('.slide');
+        // const parentElement = divImg.closest('.slide');
 
 
-    //     const mediaElement = parentElement.querySelector('.card-link__media');
-    //     console.log(mediaElement);
+        // const mediaElement = parentElement.querySelector('.card-link__media');
+        // console.log(mediaElement);
 
-    //     const pathToMedia = mediaElement.getAttribute('src');
+        // const pathToMedia = mediaElement.getAttribute('src');
 
-    //     const nameMedia = pathToMedia.split('/');
-    //     let index = '';
-    //     // retrieves current index from the element with  name
-    //     if(mediaElement.classList.contains('card-link__media--img')){
+        // const nameMedia = pathToMedia.split('/');
+        // let index = '';
+        // // retrieves current index from the element with  name
+        // if(mediaElement.classList.contains('card-link__media--img')){
 
-    //         index = media.findIndex((element) => element.image === nameMedia[4]);
-    //         console.log('img',index);
+        //     index = media.findIndex((element) => element.image === nameMedia[4]);
+        //     console.log('img',index);
 
-    //     }else {
-    //         index  = media.findIndex((element) => element.video === nameMedia[4]);
-    //         console.log('vid',index);
-    //     }
-    //     console.log(index);
+        // }else {
+        //     index  = media.findIndex((element) => element.video === nameMedia[4]);
+        //     console.log('vid',index);
+        // }
 
-    //     const numberOfSlides = media.length;
-    //     if(options.hasPrev){
-    //         if ( index <= numberOfSlides - 1  && index > 0 ){
-    //             index --;
-    //         }else {
-    //             index = numberOfSlides - 1 ;
-    //         }
-    //     }else {
-    //         if ( index < numberOfSlides -1 ){
-    //             index ++;
-    //         }else {
-    //             index = 0;
-    //         }
-    //     }
+        console.log(index);
+        const numberOfSlides = media.length;
 
-    //     this.typeOfMedia(photographer,media[index],divImg);
+        if(options.hasPrev){
+            if ( index <= numberOfSlides - 1  && index > 0 ){
+                index --;
+            }else {
+                index = numberOfSlides - 1 ;
+            }
+            this.typeOfMedia(photographer,media[index],divImg);
+        }else {
+            if ( index < numberOfSlides -1 ){
+                index ++;
+                console.log(index);
+            }else {
+                index = 0;
+            }
+            this.typeOfMedia(photographer,media[index],divImg);
+        }
 
-    // }
+       
+
+    }
 
     mediaTitle(){
         const h3 = document.createElement('h3');
@@ -386,3 +432,9 @@ class LigthBox {
 
 }
 export {LigthBox};
+
+// else if(event.key === 'ArrowRight'){
+//     this.handleSliderClick(event,photographer,media,divImg,{haskeyboard:true});
+// }else if(event.key === 'ArrowLeft'){
+//     this.nextOrprev(media,photographer,divImg,index,{hasPrev:true});
+// }
