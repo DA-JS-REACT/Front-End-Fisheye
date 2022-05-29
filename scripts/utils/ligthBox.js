@@ -112,7 +112,7 @@ class LigthBox {
      * @param {array} media
      * @param {HtmlElement} divImg
      */
-    handleSliderClick(evt,photographer,media,divImg,options={},optionsPrev={}){
+    handleSliderClick(evt,photographer,media,divImg,options={}){
 
         let element = '';
         if(options.haskeyboard){
@@ -182,88 +182,14 @@ class LigthBox {
                     index = numberOfSlides -1 ;
                 }
                 this.typeOfMedia(photographer,media[index],divImg);
-    
+
             }
 
         });
-        // const numberOfSlides = media.length;
-        // if(options.haskeyboard && optionsPrev.hasPrev ){
-        //     console.log(media);
-           
-            
-        //         if ( index <= numberOfSlides - 1  && index > 0 ){
-        //             index --;
-        //         }else {
-        //             index = numberOfSlides - 1 ;
-        //         }
-               
-        //     }else if(options.haskeyboard) {
-        //         if ( index < numberOfSlides -1 ){
-        //             index ++;
-
-        //         }else {
-        //             index = 0;
-        //         }
-                
-        //     }
-        //     this.typeOfMedia(photographer,media[index],divImg);
-
-
 
     }
 
-    /**
-     *
-     * @param {array} media
-     * @param {array} photographer
-     * @param {HtmlElement} divImg
-     */
-    nextOrprev(media,photographer,divImg,index,options={}) {
-
-        // const parentElement = divImg.closest('.slide');
-
-
-        // const mediaElement = parentElement.querySelector('.card-link__media');
-        // console.log(mediaElement);
-
-        // const pathToMedia = mediaElement.getAttribute('src');
-
-        // const nameMedia = pathToMedia.split('/');
-        // let index = '';
-        // // retrieves current index from the element with  name
-        // if(mediaElement.classList.contains('card-link__media--img')){
-
-        //     index = media.findIndex((element) => element.image === nameMedia[4]);
-        //     console.log('img',index);
-
-        // }else {
-        //     index  = media.findIndex((element) => element.video === nameMedia[4]);
-        //     console.log('vid',index);
-        // }
-
-        console.log(index);
-        const numberOfSlides = media.length;
-
-        if(options.hasPrev){
-            if ( index <= numberOfSlides - 1  && index > 0 ){
-                index --;
-            }else {
-                index = numberOfSlides - 1 ;
-            }
-            this.typeOfMedia(photographer,media[index],divImg);
-        }else {
-            if ( index < numberOfSlides -1 ){
-                index ++;
-                console.log(index);
-            }else {
-                index = 0;
-            }
-            this.typeOfMedia(photographer,media[index],divImg);
-        }
-
-       
-
-    }
+ 
 
     mediaTitle(){
         const h3 = document.createElement('h3');
