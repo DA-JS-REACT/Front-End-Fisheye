@@ -17,7 +17,7 @@ class Home  {
      * @param {array} photographers
      */
 
-    async displayData(photographers) {
+    displayData(photographers) {
 
         photographers.forEach((photographer) => {
             const photographerModel = new PhotographerHomeFactory(

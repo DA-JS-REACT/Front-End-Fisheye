@@ -53,7 +53,7 @@ class PagePhotographer {
      * @param {array} medias
      * @param {number} id
      */
-    async displayMedia(medias, id,photographers) {
+    displayMedia(medias, id,photographers) {
 
         const section = this.getPageMainSection(this.photographSection);
         this.displaySort(section);
